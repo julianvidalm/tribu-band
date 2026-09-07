@@ -149,5 +149,6 @@ test("outOfKey lists chromatic notes of a voicing", () => {
   assert.deepEqual(outOfKey("E7", [0, 2, 0, 1, 0, 0], am), ["G#"]);
   assert.deepEqual(outOfKey("Am", [-1, 0, 2, 2, 1, 0], am), []);
   const dm = keyScale("Dm");
-  assert.deepEqual(outOfKey("A7", [-1, 0, 2, 0, 2, 0], dm), ["Db"]);
+  assert.deepEqual(outOfKey("A7", [-1, 0, 2, 0, 2, 0], dm), ["C#"], "leading tone spelled sharp in a flat minor key");
+  assert.deepEqual(outOfKey("Bb7", [-1, 1, 3, 1, 3, 1], dm), ["Ab"], "other chromatics keep the key's flats");
 });

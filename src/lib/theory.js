@@ -177,9 +177,12 @@ export function keyScale(k) {
 }
 
 // Note names of the shape that fall outside the key's diatonic scale.
+// In minor keys the raised leading tone is always spelled sharp (C# in Dm),
+// even when the key signature itself uses flats.
 export function outOfKey(symbol, shape, key) {
   if (!key) return [];
+  const leadingTone = mod12(key.root + 11);
   return shapeNotes(shape)
     .filter((pc) => !key.pcs.has(pc))
-    .map((pc) => noteName(pc, { flats: key.flats }));
+    .map((pc) => noteName(pc, { flats: key.flats && !(key.mode === "minor" && pc === leadingTone) }));
 }

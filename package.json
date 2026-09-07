@@ -6,7 +6,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "node build/build.js",
-    "test": "node --test \"test/**/*.test.js\""
+    "check": "node scripts/check.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "build": "node scripts/check.js && node build/build.js"
   }
 }

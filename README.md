@@ -28,8 +28,20 @@ sin build en tiempo de ejecución y sin dependencias externas.
 Requiere Node 18 o superior. No hay dependencias que instalar.
 
 ```sh
-npm run build
+npm run check   # valida los datos
+npm test        # corre los tests unitarios
+npm run build   # check + genera dist/setlist-la-tribu.html
 ```
+
+- `npm run check` (`scripts/check.js`) verifica que cada digitación dé las
+  notas que promete su cifrado, que las cadenas `b`/`t`/`g` de cada sección
+  estén alineadas, que todo acorde usado tenga forma en alguna biblioteca, y
+  emite un reporte de notas fuera del tono por tema y del estado de
+  verificación del setlist. Los tres primeros puntos son bloqueantes.
+- `npm test` corre los tests con el runner nativo de Node (`node:test`):
+  parser de cifrados, cálculo de notas, traste base de los diagramas, parser
+  de letras y el concatenador del build.
+- `npm run build` se niega a generar el archivo si el validador falla.
 
 Genera `dist/setlist-la-tribu.html`. El script (`build/build.js`) concatena los
 módulos de `src/` en orden fijo, quita las palabras `import`/`export`, envuelve
@@ -53,7 +65,10 @@ src/
   lib/scale.js          diagrama SVG de la pentatónica
   lib/lyrics.js         detección de líneas de acordes en los bloques de letra
   ui/app.js             estado, vistas y controles
+  lib/theory.js         notas, intervalos, parser de cifrados y comparación digitación ↔ cifrado
 build/build.js          genera dist/setlist-la-tribu.html
+scripts/check.js        validador de datos (npm run check)
+test/                   tests unitarios (npm test)
 dist/                   salida del build (no se versiona)
 ```
 
