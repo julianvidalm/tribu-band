@@ -10,7 +10,7 @@
 // buildable years from now with nothing but Node.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "src");
@@ -63,18 +63,23 @@ function readSrc(rel) {
   return readFileSync(p, "utf8");
 }
 
-const js = MODULES.map((rel) => "/* ---- src/" + rel + " ---- */\n" + stripEsm(readSrc(rel))).join("\n\n");
-const wrapped = '(function(){\n"use strict";\n' + js + "\n})();\n";
+export function main() {
+  const js = MODULES.map((rel) => "/* ---- src/" + rel + " ---- */\n" + stripEsm(readSrc(rel))).join("\n\n");
+  const wrapped = '(function(){\n"use strict";\n' + js + "\n})();\n";
 
-const css = readSrc("styles.css");
-const template = readSrc("template.html");
-if (!template.includes("{{css}}") || !template.includes("{{js}}")) fail("template.html must contain {{css}} and {{js}}");
+  const css = readSrc("styles.css");
+  const template = readSrc("template.html");
+  if (!template.includes("{{css}}") || !template.includes("{{js}}")) fail("template.html must contain {{css}} and {{js}}");
 
-// split/join instead of replace(): the payload may contain `$&`-style patterns.
-const html = template.split("{{css}}").join(css).split("{{js}}").join(wrapped);
-if (/\{\{[a-z]+\}\}/.test(html)) fail("unreplaced placeholder left in output");
-if (/^\s*(import|export)\s/m.test(wrapped)) fail("import/export survived stripping");
+  // split/join instead of replace(): the payload may contain `$&`-style patterns.
+  const html = template.split("{{css}}").join(css).split("{{js}}").join(wrapped);
+  if (/\{\{[a-z]+\}\}/.test(html)) fail("unreplaced placeholder left in output");
+  if (/^\s*(import|export)\s/m.test(wrapped)) fail("import/export survived stripping");
 
-mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(OUT, html);
-console.log("build: wrote dist/setlist-la-tribu.html (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB)");
+  mkdirSync(OUT_DIR, { recursive: true });
+  writeFileSync(OUT, html);
+  console.log("build: wrote dist/setlist-la-tribu.html (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB)");
+}
+
+// Only build when executed directly, so tests can import stripEsm.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) main();

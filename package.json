@@ -2,8 +2,11 @@
   "name": "setlist-la-tribu",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "test": "node --test \"test/**/*.test.js\""
   }
 }
