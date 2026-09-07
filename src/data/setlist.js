@@ -47,8 +47,26 @@ oohh oohh oohhh`}
  forma:"Intro punteada → Verso → Estribillo → Verso 2 → Estribillo → Solo → Estribillo final",
  rol:"<b>El punteo de la intro es tuyo.</b> Vive alrededor de los trastes 10-12 en las tres primeras cuerdas. Lo que estás tocando encima es un <b>descenso cromático en el bajo</b>: Re → Do# → Do → Si, mientras el acorde sigue siendo Rem. Ese movimiento es el gancho del tema; si lo tocás como cuatro acordes sueltos se pierde. Pensalo como una sola línea que baja.",
  secs:[
-  {n:"Intro / Verso",x:"×2",c:"4 compases",cue:"“Loca, loca, loca…”",b:"Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:""},
-  {n:"Estribillo",x:"×2",c:"6 compases",cue:"“Qué mala suerte en el amor…”",b:"Gm | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Gm/D | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Gm7 | A7b9 | Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:""}
+  {n:"Intro / Verso",x:"×2",c:"4 compases",cue:"“Loca, loca, loca…”",b:"Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:`Dm
+Loca, loca, loca,
+             Gm                         A7
+te volviste loca y disparaste frente a mí.
+                    Dm
+Que te habías enamorado hace unos años sin decirme nada,
+                Gm               A7
+entonces la emoción confirma el sentimiento.
+
+Me muero por saber que paso contigo,
+en todos estos años en que no nos vimos.
+Me muero por saber que paso en tu cama,
+necesito esa cara de vulgaridad en mi cama,
+la que pregunta por ti, la que me dice porque ...`},
+  {n:"Estribillo",x:"×2",c:"6 compases",cue:"“Qué mala suerte en el amor…”",b:"Gm | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Gm/D | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Gm7 | A7b9 | Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:`Gm                           A7
+Que mala suerte en el amor y buena suerte en el juego
+Dm                       Dmmaj7               Dm7                   Dm6
+Y si al final lo que hay que vivir, lo que hay que soñar, hay que vivirlo
+Gm                       A7
+Te vuelvo a dar gracias, te vuelvo a dar gracias.`}
  ]},
 {n:3,t:"Yo Tomo",a:"Bersuit Vergarabat · «Libertinaje», 1998",k:"Am",bpm:"≈145",st:"Rock / murga",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
  forma:"Intro con power chords → Verso ×2 → Estribillo → Verso → Estribillo → Solo → Estribillo hasta el final",
