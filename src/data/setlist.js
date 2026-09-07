@@ -445,7 +445,14 @@ Que me come poquito a poco.
             A                     Dm
 Esa negra linda que me tiene loco,
          A            Dm
-Que me come poquito a poco.`}
+Que me come poquito a poco.
+
+              A
+La-ra-ra, la-ra-ra,
+              Dm
+la-ra-ra, la-ra-ra.
+          A               Dm
+Mi negra linda nunca me dejes.`}
  ]},
 {n:20,t:"Baila Negra",a:"Sajama",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
  dud:"Grupo identificado, pero no encontré transcripción publicada ni análisis del audio. No te la voy a inventar. Mandame un link de YouTube o decime el tono y los acordes que usan y la armo con todo lo demás.",rol:"",secs:[]},
