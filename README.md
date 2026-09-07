@@ -22,6 +22,22 @@ sin build en tiempo de ejecución y sin dependencias externas.
    - **Pantalla**: Wake Lock para que no se apague la pantalla.
 4. En pantallas de 800 px o más, la vista se parte en dos columnas: contenido
    del tema a la izquierda y panel fijo de diagramas y escala a la derecha.
+5. **Transportar un tema**: dentro del tema, tocá la etiqueta turquesa del tono
+   y elegí en qué tono tocarlo. La grilla muestra los 12 tonos del mismo modo
+   (menores para un tema en menor, mayores para uno en mayor); el original va
+   con borde turquesa y el elegido en amarillo. El pie indica los semitonos y
+   el botón **Volver a …** restaura el original.
+   - Es una transposición real, no una cejilla: cambian los nombres de los
+     acordes, los diagramas de los tres modos (el acorde básico, su tríada y su
+     voicing avanzado), la caja de la escala y las líneas de acordes de la
+     letra. Si la biblioteca no tiene el acorde transportado, se usa la
+     digitación de la misma calidad corrida por el mástil hasta el nuevo tono.
+   - La transposición elegida se guarda en el dispositivo (`localStorage`,
+     por tema). En la vista previa de Archivos del iPad puede no persistir
+     entre aperturas: para fijarla en el archivo, usá
+     `src/data/transposiciones.json` (ver abajo).
+   - Mientras un tema está transportado, la etiqueta de zona del mástil
+     (`zt`/`za`) no se muestra, porque describe la posición original.
 
 ## Build
 
@@ -63,11 +79,13 @@ src/
   data/setlist.js       SET: los 26 temas con secciones y acordes por modo
   data/chords.js        SHAPES, SHAPES_ALT, SHAPES_ADV: digitaciones por modo
   data/scales.js        ESCALAS: caja pentatónica y nota de uso por tema
+  data/transposiciones.json  transposición acordada por tema, en semitonos
   lib/notation.js       traducción americana ↔ latina
   lib/bars.js           partición de una cadena de acordes en compases
   lib/diagram.js        diagramas SVG de acordes y cálculo del traste base
   lib/scale.js          diagrama SVG de la pentatónica
   lib/lyrics.js         detección de líneas de acordes en los bloques de letra
+  lib/transpose.js      transposición de cifrados, digitaciones, escalas y letras
   ui/app.js             estado, vistas y controles
   lib/theory.js         notas, intervalos, parser de cifrados y comparación digitación ↔ cifrado
 build/build.js          genera dist/setlist-la-tribu.html
@@ -75,6 +93,25 @@ scripts/check.js        validador de datos (npm run check)
 test/                   tests unitarios (npm test)
 dist/                   salida del build (no se versiona)
 ```
+
+## Transposiciones guardadas
+
+`src/data/transposiciones.json` guarda la transposición que la banda acordó
+para cada tema, en semitonos, por número de tema:
+
+```json
+{ "songs": { "2": 2, "13": -1 } }
+```
+
+Ese ejemplo abre Loca en Em (Dm + 2) y Cariñito en G#m (Am − 1). El build
+inlina el archivo en el HTML, así que el valor viaja con el archivo a cualquier
+dispositivo y queda versionado en git. Un valor guardado en el dispositivo desde
+el selector tiene prioridad sobre el JSON; **Volver a …** deja el tema en su
+tono original en ese dispositivo.
+
+El validador (`npm run check`, sección 6) comprueba que cada acorde de cada
+tema tenga una digitación válida en los tres modos en las 12 transposiciones
+posibles, así el selector nunca deja un acorde sin diagrama.
 
 ## Formato de los datos
 
