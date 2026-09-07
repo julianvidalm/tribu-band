@@ -20,7 +20,7 @@ function barra(x){
       const eq=(modo!=="b"&&b[i]&&b[i]!==ac)?'<span class="eq">'+trad(b[i], notac)+'</span>':'';
       return '<span class="c'+(i>0?" sec2":"")+'">'+trad(ac, notac)+eq+'</span>';
     }).join(" ");
-  }).join('<span class="p">|</span>');
+  }).join('<span class="p">|</span>\u200B');
 }
 
 function zonaDe(s){ return modo==="t"?s.zt:modo==="a"?s.za:""; }
