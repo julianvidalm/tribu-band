@@ -73,8 +73,43 @@ Te vuelvo a dar gracias, te vuelvo a dar gracias.`}
  rol:"La intro son <b>quintas (power chords), no acordes completos</b>: A5–D5 alternando, con distorsión y sin tercera. Ahí no hay armonía que definir, es puro riff. En el verso pasás a acordes normales. El solo va sobre Am–Dm–E: escala menor de La, y sobre el Mi subís el Sol a Sol#.",
  secs:[
   {n:"Intro",x:"×2",c:"4 compases",b:"A5  D5 | A5  D5 | A5  D5 | E5",t:"A5  D5 | A5  D5 | A5  D5 | E5",g:"A5  D5 | A5  D5 | A5  D5 | E5",l:""},
-  {n:"Verso",x:"×2 coplas",c:"4 compases",cue:"“¿Quién sos? ¿Cómo sos?…”",b:"Am | Dm | E | Am  E",t:"Am/C | Dm | E/B | Am/C  E/B",g:"Am7 | Dm7 | E7b9 | Am7  E7b9",l:""},
-  {n:"Estribillo",x:"×4",c:"2 compases",cue:"“Tomo para no enamorarme…”",b:"Am  E | E  Am",t:"Am/C  E/B | E/B  Am/C",g:"Am7  E7b9 | E7b9  Am7",l:""}
+  {n:"Verso",x:"×2 coplas",c:"4 compases",cue:"“¿Quién sos? ¿Cómo sos?…”",b:"Am | Dm | E | Am  E",t:"Am/C | Dm | E/B | Am/C  E/B",g:"Am7 | Dm7 | E7b9 | Am7  E7b9",l:`Am
+Quien sos, cómo sos, cuando venís,
+Dm
+cuando llegaste, cuando te vas
+E                            Am            E
+por que te fuiste, quien se cagó (¡no fui yo!)
+
+Am
+Que hora es, que vamos a comer,
+     Dm
+por que me miras, que te debo yo,
+    E                            Am    E
+deja ese salame, llevate este jamón
+
+Por qué no te morís,  por que no te matas
+de que te reís, no se por que lloras
+quien te vendió esa cara,  por que la compre yo
+
+No se si me querés, no se si me engañas,
+no se si volveré, no se si volverás
+tá todo bien, está todo mal
+
+Por qué no te dormis, por que no laburas,
+yo te mantengo y no te bañas
+o te lavas los piese o te los lavo yo
+
+Cuanto querés, cuanto me das
+cuanto tenés, cuanto cobras
+quien es el boludo, o el boludo soy yo`},
+  {n:"Estribillo",x:"×4",c:"2 compases",cue:"“Tomo para no enamorarme…”",b:"Am  E | E  Am",t:"Am/C  E/B | E/B  Am/C",g:"Am7  E7b9 | E7b9  Am7",l:`Am                E
+Tomo para no enamorarme
+      E              Am
+me enamoro para no tomar
+Am                 E
+tomo para no enamorarme
+       M             Am
+me enamoro para no tomar`}
  ]},
 {n:4,t:"Poco a Poco",a:"Los Tekis",k:"C / Am",bpm:"≈150",st:"Huayno",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
  forma:"Intro de quena o charango → Verso ×2 → Instrumental → Verso → empalme con Cariñito",
