@@ -131,28 +131,39 @@ las cositas de mi amor. x2`}
   {n:"Verso",x:"×2",c:"4 compases",b:"Em | Bm | Em | Bm",t:"Em/B | Bm | Em/B | Bm",g:"Em9 | Bm7 | Em9 | Bm7",l:""},
   {n:"Parte mayor",x:"×2",c:"4 compases",b:"C | D | G | Em",t:"C | D | G/D | Em/B",g:"Cadd9 | Dadd9 | Gadd9 | Em9",l:""}
  ]},
-{n:6,t:"Ojos Azules",a:"Gilberto Rojas · 1947",k:"Am",bpm:"≈120",st:"Taquirari / huayno",v:"oido",zt:"trastes 3–8",za:"trastes 0–5",
- forma:"Intro instrumental → Verso ×2 → Estribillo → Verso → Estribillo → Coda acelerada",
+{n:6,t:"Ojos Azules",a:"Gilberto Rojas · 1947",k:"Am",bpm:"≈120",st:"Taquirari / huayno",v:"oido",zt:"trastes 1–5",za:"trastes 0–5",
+ forma:"Intro instrumental → Estrofa ×3 (la última repite la primera) → Coda acelerada",
  rol:"El tono La menor está confirmado, la estructura la reconstruí de oído. Dato: <b>es boliviana y originalmente un taquirari</b>, no un huayno peruano. La melodía principal es de quena y cae casi entera en la pentatónica de La menor: si la doblás en requinto, notas separadas y sin vibrato.",
  secs:[
-  {n:"Verso",x:"×2",c:"4 compases",b:"Am | G | C | E7",t:"Am/C | G/D | C | E7",g:"Am7 | Gadd9 | Cadd9 | E7b9",l:`Am       C         Am       C      E7      Am
-ojos azules no llores no llores ni te enamores
+  {n:"Estrofa",x:"×3, la última repite la primera",c:"8 compases · cada pareado ×2",cue:"“Ojos azules no llores…”",b:"Am | C | E7 | Am | G7 | C | E7 | Am",t:"Am/C | C | E7 | Am/C | G7 | C | E7 | Am/C",g:"Am7 | Cadd9 | E7b9 | Am7 | G13 | Cadd9 | E7b9 | Am7",l:`Am                C
+Ojos azules no llores,
+      E7            Am
+No llores ni te enamores.     2x
 
-  F           C  F  G C  F   G  E7             Am
-lloraras cuando me vaya cuando remedio ya no haya
+     G7              C
+Llorarás cuando me vaya,
+       E7             Am
+Cuando remedio ya no haya.    2x
 
-Am          C       Am       C    E7    Am
-tu me juraste quererme quererme toda la vida
+Am                   C
+Tú me juraste quererme,
+      E7          Am
+Quererme toda la vida.        2x
 
-F           C  F  G C     F  G  E7            Am
-no pasaron dos tres dias tu te alejas y me dejas
+     G7                C
+No pasaron dos, tres días,
+         E7         Am
+Tú te alejas y me dejas.      2x
 
-Am        C      Am       C    E7      Am
-en una copa de vino quisiera tomar veneno
+Am               C
+En una copa de vino
+      E7          Am
+Quisiera tomar veneno,        2x
 
- F        C  F G  C   F G E7            Am
-veneno para matarme ,veneno para olvidarte`},
-  {n:"Estribillo",x:"×2",c:"4 compases",b:"Am | E7 | Am | Am",t:"Am/C | E7 | Am/C | Am/C",g:"Am7 | E7b9 | Am7 | Am7",l:""}
+    G7           C
+Veneno para matarme,
+    E7             Am
+Veneno para olvidarte.        2x`}
  ]},
 {n:7,t:"Gimme the Power",a:"Molotov",k:"Am",bpm:"≈100",st:"Rap rock",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
  forma:"Intro → Verso rapeado → Coro → Verso → Coro → Puente → Coro hasta el final",
