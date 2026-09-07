@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>La Tribu · Setlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tolex:#100F0D; --tolex2:#1A1815; --papel:#F2EADC;
+  --rojo:#D6402F; --amarillo:#F0B429; --turquesa:#2FA69B;
+  --gris:#7A756B; --linea:#2C2823; --esc:1; --barra:56px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--tolex); color:var(--papel);
+  font-family:"Archivo",system-ui,-apple-system,sans-serif;
+  font-size:calc(17px * var(--esc)); line-height:1.45;
+  padding-bottom:210px; -webkit-text-size-adjust:100%;
+}
+h1,h2,h3{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;margin:0;letter-spacing:-.01em}
+.top{
+  position:sticky;top:0;z-index:60;
+  background:rgba(16,15,13,.94); backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--linea);
+  padding:10px 14px; padding-top:calc(10px + env(safe-area-inset-top,0));
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+}
+.marca{font-family:"Archivo Black";font-size:15px;letter-spacing:.02em;margin-right:auto;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.marca span{color:var(--rojo)}
+.btn{font-family:"Archivo";font-weight:700;font-size:13px;letter-spacing:.04em;
+  background:transparent;color:var(--papel);border:1px solid var(--linea);
+  border-radius:2px;padding:9px 12px;min-height:40px;cursor:pointer}
+.btn:active{background:var(--tolex2)}
+.btn.on{background:var(--amarillo);color:#100F0D;border-color:var(--amarillo)}
+.btn.rojo.on{background:var(--rojo);color:var(--papel);border-color:var(--rojo)}
+.btn#volver{border-color:var(--rojo);color:var(--rojo)}
+.grupo{display:flex;border:1px solid var(--linea);border-radius:2px;overflow:hidden}
+.grupo .btn{border:0;border-radius:0}
+.grupo .btn+.btn{border-left:1px solid var(--linea)}
+.oculto{display:none!important}
+
+/* ---------- ÍNDICE ---------- */
+.hero{padding:26px 16px 8px}
+.hero h1{font-size:clamp(28px,5.6vw,44px);line-height:.98}
+.hero p{color:var(--gris);margin:10px 0 0;font-size:14px;max-width:56ch}
+.indice{padding:14px 10px 26px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px}
+.item{display:flex;align-items:baseline;gap:12px;padding:16px 12px;
+  border:1px solid var(--linea);border-radius:2px;background:var(--tolex2);
+  text-decoration:none;color:var(--papel);min-height:62px;cursor:pointer}
+.item:active{border-color:var(--amarillo)}
+.item .num{font-family:"JetBrains Mono";font-weight:700;color:var(--rojo);font-size:15px;min-width:2ch}
+.item .tt{font-family:"Archivo";font-weight:700;font-size:16px;line-height:1.15}
+.item .aa{display:block;font-weight:400;color:var(--gris);font-size:12px;margin-top:2px}
+.item .kk{margin-left:auto;font-family:"JetBrains Mono";font-size:13px;color:var(--turquesa);white-space:nowrap}
+.item.dud{border-color:#4A2119}
+.item.dud .kk{color:var(--rojo)}
+
+/* ---------- CANCIÓN ---------- */
+.song{padding:24px 16px 30px}
+.cab{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.cab .num{font-family:"JetBrains Mono";font-weight:700;color:var(--rojo);font-size:26px;line-height:1}
+.cab h2{font-size:clamp(26px,5vw,38px);line-height:1;flex:1 1 60%}
+.cab .art{color:var(--gris);font-size:14px;margin-top:7px;display:block;font-family:"Archivo";font-weight:400}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 0}
+.tag{font-family:"JetBrains Mono";font-size:12px;font-weight:500;padding:5px 8px;border:1px solid var(--linea);border-radius:2px;color:var(--gris)}
+.tag.tono{color:#100F0D;background:var(--turquesa);border-color:var(--turquesa);font-weight:700}
+.tag.zona{color:#100F0D;background:var(--amarillo);border-color:var(--amarillo);font-weight:700;display:none}
+body.alt .tag.zona{display:inline-block}
+.tag.ok{color:var(--turquesa);border-color:#1E4F4A}
+.tag.oido{color:var(--amarillo);border-color:#4A3A12}
+.tag.dud{color:var(--rojo);border-color:#4A2119}
+
+.forma{margin:16px 0 0;padding:11px 13px;background:var(--tolex2);border:1px solid var(--linea);
+  font-family:"JetBrains Mono";font-size:13px;color:#BDB6A8;line-height:1.8}
+.forma i{font-style:normal;color:var(--turquesa)}
+.forma .h{display:block;font-family:"Archivo";font-weight:700;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:6px}
+
+.rol{margin:14px 0 0;padding:11px 13px;border-left:3px solid var(--rojo);background:var(--tolex2);font-size:14px;color:#CFC7B8}
+.rol b{color:var(--papel)}
+.secs{margin:22px 0 0}
+.sec{padding:16px 0;border-top:1px solid var(--linea)}
+.sec .nom{font-family:"Archivo";font-weight:700;font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--turquesa);margin-bottom:8px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sec .rep{font-family:"JetBrains Mono";background:var(--turquesa);color:#100F0D;padding:2px 7px;border-radius:2px;font-size:12px;letter-spacing:0}
+.sec .cps{color:var(--gris);font-weight:400;letter-spacing:0;text-transform:none;font-size:12px}
+.sec .cue{color:var(--gris);font-weight:400;letter-spacing:0;text-transform:none;font-size:12px;font-style:italic}
+.bar{font-family:"JetBrains Mono";font-weight:700;font-size:clamp(20px,4.4vw,28px);line-height:1.7;word-spacing:.1em}
+.bar .p{color:#3E3934;font-weight:500;margin:0 .35em}
+.bar .c{color:var(--amarillo)}
+.bar .c.sec2{color:var(--papel)}
+.bar .eq{color:var(--turquesa);font-size:.55em;font-weight:500;vertical-align:super;margin-left:.12em;letter-spacing:.02em}
+.dg .eq{display:block;color:var(--turquesa);font-size:11px;font-weight:500;margin:-1px 0 2px}
+
+.letra{margin:10px 0 0;font-family:"JetBrains Mono",monospace;font-size:calc(14px*var(--esc));
+  line-height:1.55;white-space:pre;overflow-x:auto;padding:10px 0}
+.letra .ac{color:var(--amarillo);font-weight:700}
+.letra .lt{color:#DDD5C6}
+.vacio{margin:10px 0 0;padding:12px;border:1px dashed var(--linea);color:#5C574F;font-size:13px;
+  font-family:"Archivo"}
+body.sinletra .letra,body.sinletra .vacio{display:none}
+
+.aviso{margin:16px 0 0;padding:13px;border:1px dashed #4A2119;background:#1A100E;font-size:14px;color:#E0B9B1}
+.aviso b{color:var(--rojo);font-family:"Archivo Black";display:block;margin-bottom:4px;font-size:13px;letter-spacing:.04em}
+
+.nav{display:flex;gap:8px;margin:30px 0 0;padding-top:18px;border-top:1px solid var(--linea)}
+.nav a{flex:1;padding:14px 12px;border:1px solid var(--linea);background:var(--tolex2);
+  color:var(--papel);text-decoration:none;font-size:13px;font-weight:700;cursor:pointer}
+.nav a.sig{text-align:right}
+.nav a small{display:block;color:var(--gris);font-weight:400;font-size:11px;margin-top:3px}
+
+.panel{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:rgba(16,15,13,.97);backdrop-filter:blur(14px);
+  border-top:1px solid var(--linea);
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom,0));
+}
+.panel .lbl{font-family:"Archivo";font-weight:700;font-size:10px;letter-spacing:.12em;
+  color:var(--gris);text-transform:uppercase;padding:0 4px 5px}
+.panel .lbl b{color:var(--amarillo)}
+.strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.dg{flex:0 0 auto;text-align:center;width:88px}
+.dg .nm{font-family:"JetBrains Mono";font-weight:700;font-size:13px;color:var(--amarillo);margin-bottom:2px;white-space:nowrap}
+.dg svg{display:block;margin:0 auto}
+
+.escBlk{margin-top:20px;padding-top:16px;border-top:1px solid var(--linea)}
+.escBlk .h{font-family:"Archivo";font-weight:700;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:4px}
+.escBlk .t{font-family:"JetBrains Mono";font-weight:700;font-size:15px;color:var(--turquesa);margin-bottom:10px}
+.escBlk svg{width:100%;height:auto;display:block}
+.escBlk .n{font-size:12.5px;color:#A69F92;margin-top:10px;line-height:1.5}
+.escBlk .n b{color:var(--papel)}
+#escSong{display:block;padding:0 16px}
+#escPanel{display:none}
+
+footer{padding:26px 16px 40px;color:var(--gris);font-size:12px;border-top:1px solid var(--linea)}
+footer b{color:var(--papel)}
+footer code{font-family:"JetBrains Mono";color:var(--amarillo);font-size:11px}
+
+@media (min-width:800px){
+  body{padding-bottom:0}
+  .shell{display:grid;grid-template-columns:minmax(0,1fr) 340px;align-items:start}
+  main{min-width:0}
+  .panel{
+    position:sticky;top:var(--barra);z-index:20;
+    left:auto;right:auto;bottom:auto;
+    height:calc(100vh - var(--barra));
+    border-top:0;border-left:1px solid var(--linea);
+    padding:16px 14px;overflow-y:auto;
+    background:#131210;backdrop-filter:none;
+  }
+  .panel .lbl{font-size:11px;padding-bottom:12px;border-bottom:1px solid var(--linea);margin-bottom:14px}
+  .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:16px 4px;overflow:visible}
+  .dg{width:auto}
+  .dg .nm{font-size:14px}
+  #escSong{display:none}
+  #escPanel{display:block}
+  .hero h1{font-size:clamp(34px,4.2vw,50px)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <button class="btn oculto" id="volver">← Índice</button>
+  <div class="marca" id="marca">LA <span>TRIBU</span></div>
+  <div class="grupo">
+    <button class="btn on" id="mBas">Básico</button>
+    <button class="btn" id="mTri">Tríadas</button>
+    <button class="btn" id="mAdv">Avanzado</button>
+  </div>
+  <button class="btn on" id="bLetra">Letra</button>
+  <div class="grupo">
+    <button class="btn on" id="nEn">C D E</button>
+    <button class="btn" id="nEs">DO RE MI</button>
+  </div>
+  <div class="grupo">
+    <button class="btn" id="tMin">A−</button>
+    <button class="btn" id="tMas">A+</button>
+  </div>
+  <button class="btn rojo" id="wake">Pantalla</button>
+</div>
+
+<div class="shell">
+  <main id="main"></main>
+  <aside class="panel" id="panel">
+    <div class="lbl" id="panelLbl">Acordes</div>
+    <div class="strip" id="strip"></div>
+    <div id="escPanel"></div>
+  </aside>
+</div>
+
+<script>
+/* ==========================================================================
+   CÓMO AGREGAR LA LETRA DE UN TEMA
+   --------------------------------------------------------------------------
+   Cada sección tiene un campo  l:  vacío. Copiá el bloque desde cualquier
+   sitio de acordes (lacuerda, cifraclub, acordesweb) y pegalo TAL CUAL entre
+   los acentos graves ` `, respetando los espacios. Ejemplo del formato:
+
+     l:`C           G
+   Primera línea de la letra
+   F           G
+   Segunda línea de la letra`
+
+   El archivo detecta solo cuáles líneas son de acordes (las pinta amarillas)
+   y cuáles son de letra. No toques la alineación: los espacios son los que
+   ponen cada acorde encima de su sílaba.
+   ========================================================================== */
+
+/* ============ BIBLIOTECA DE ACORDES ============ */
+/* [6ª,5ª,4ª,3ª,2ª,1ª] · -1 = no tocar · 0 = al aire */
+const SHAPES={
+ /* --- BÁSICOS: primera posición --- */
+ "G":[3,2,0,0,3,3],"C":[-1,3,2,0,1,0],"D":[-1,-1,0,2,3,2],"D7":[-1,-1,0,2,1,2],
+ "Em":[0,2,2,0,0,0],"A":[-1,0,2,2,2,0],"A7":[-1,0,2,0,2,0],"E":[0,2,2,1,0,0],
+ "E7":[0,2,0,1,0,0],"B7":[-1,2,1,2,0,2],"B":[-1,2,4,4,4,2],"Bm":[-1,2,4,4,3,2],
+ "Am":[-1,0,2,2,1,0],"Dm":[-1,-1,0,2,3,1],"F":[1,3,3,2,1,1],"Bb":[-1,1,3,3,3,1],
+ "Gm":[3,5,5,3,3,3],"F#m":[2,4,4,2,2,2],"G#m":[4,6,6,4,4,4],"C#m":[-1,4,6,6,5,4],
+ "G#7":[4,-1,4,5,4,-1],"C7":[-1,3,2,3,1,-1],"G7":[3,2,0,0,0,1],"Bb7":[-1,1,3,1,3,1],"Cm":[-1,3,5,5,4,3],
+ "Dm7":[-1,-1,0,2,1,1],"Dm6":[-1,-1,0,2,0,1],"Dmmaj7":[-1,-1,0,2,2,1],
+ "A5":[-1,0,2,2,-1,-1],"D5":[-1,-1,0,2,3,-1],"E5":[0,2,2,-1,-1,-1],
+ };
+
+/* --- ALTERNATIVOS: tríadas en 3ª-2ª-1ª (y las 7ª que quedan en Vasos Vacíos) --- */
+const SHAPES_ALT={
+ /* Vasos Vacíos conserva sus voicings con séptima */
+ "Gmaj7":[-1,-1,5,7,7,7],"Gmaj9":[-1,-1,5,7,7,5],"Em9":[-1,7,5,7,7,-1],
+ "Cmaj9":[-1,3,5,4,3,-1],"D9":[-1,5,4,5,5,-1],
+ /* tríadas: solo 3ª, 2ª y 1ª cuerda */
+ "C":[-1,-1,-1,5,5,3],"F/C":[-1,-1,-1,5,6,5],"G/D":[-1,-1,-1,7,8,7],
+ "Am/C":[-1,-1,-1,5,5,5],"Em/B":[-1,-1,-1,4,5,3],"Dm":[-1,-1,-1,7,6,5],
+ "D":[-1,-1,-1,7,7,5],"E":[-1,-1,-1,9,9,7],"A/C#":[-1,-1,-1,6,5,5],
+ "B":[-1,-1,-1,4,4,2],"Bm":[-1,-1,-1,4,3,2],"A7":[-1,-1,-1,6,5,3],
+ "E7":[-1,-1,-1,4,3,4],"E/B":[-1,-1,-1,4,5,4],"C#m":[-1,-1,-1,6,5,4],
+ "F#m/A":[-1,-1,-1,2,2,2],"G#m/B":[-1,-1,-1,4,4,4],"Gm/Bb":[-1,-1,-1,3,3,3],
+ "G#7":[-1,-1,-1,5,4,2],"Bb/D":[-1,-1,-1,7,6,6],"Gm/D":[-1,-1,-1,7,8,6],
+ "C7":[-1,-1,-1,5,5,6],"G7":[-1,-1,-1,4,3,1],"Bb7":[-1,-1,-1,7,6,4],"Cm/Eb":[-1,-1,-1,8,8,8],"D7":[-1,-1,-1,7,7,8]
+};
+
+/* --- AVANZADOS: séptimas, novenas y trecenas, cajas de 4 cuerdas --- */
+const SHAPES_ADV={
+ "Gmaj7":[-1,-1,5,7,7,7],"Gmaj9":[-1,-1,5,7,7,5],"G13":[3,-1,3,4,5,-1],
+ "Cmaj7":[-1,3,5,4,5,-1],"Cmaj9":[-1,3,5,4,3,-1],
+ "D9":[-1,5,4,5,5,-1],"Dm7":[-1,5,7,5,6,-1],"Dm9":[-1,5,3,5,5,-1],"A7b9":[-1,-1,5,6,5,6],
+ "Em9":[-1,7,5,7,7,-1],"Am9":[5,-1,5,5,5,7],
+ "A13":[5,-1,5,6,7,-1],"Amaj7":[-1,-1,7,9,9,9],
+ "E9":[-1,7,6,7,7,-1],"E6/9":[-1,-1,9,9,9,9],"Emaj7":[-1,7,9,8,9,-1],
+ "B13":[7,-1,7,8,9,-1],"Bm7":[-1,2,4,2,3,-1],"Bbmaj7":[-1,-1,8,10,10,10],
+ "Fmaj7":[-1,-1,3,5,5,5],"Gm7":[-1,-1,5,7,6,6],
+ "F#m7":[-1,-1,4,6,5,5],"G#m7":[-1,-1,6,8,7,7],"C#m7":[-1,4,6,4,5,-1],
+ "G#13":[4,-1,4,5,6,-1],"C9":[-1,3,2,3,3,-1],"Cm9":[-1,3,1,3,3,-1],"D7b9":[-1,-1,4,5,4,5],"B7b9":[-1,-1,4,5,4,5],
+ "Cadd9":[-1,3,2,0,3,-1],"Em7":[-1,-1,2,4,3,3],"Am7":[-1,0,5,5,5,-1],"E7b9":[-1,-1,3,4,3,4],"Dadd9":[-1,5,4,2,5,-1],"Eadd9":[-1,-1,2,1,0,2],
+ "Fadd9":[-1,-1,3,2,1,3],"Gadd9":[-1,-1,5,4,3,5],"Aadd9":[-1,-1,7,6,5,7]
+};
+
+/* ============ SETLIST ============ */
+const SET=[
+{n:1,t:"El Inti Sol",a:"Julio Víctor González",k:"Am",bpm:"≈100",st:"Andino",v:"ok",zt:"trastes 5–8",za:"trastes 3–5",
+ forma:"Intro en Am → Verso (8 frases) → Coro “oohh” → Verso → Coro → Coda",
+ rol:"Dos acordes en todo el tema: <b>Am y G</b>, o sea i–♭VII. <b>No hay sensible</b> — nunca aparece el Sol#, y por eso el tema no resuelve nunca, gira. Eso es lo que le da el carácter andino, no el ritmo.<br><br>Con solo dos acordes, todo el peso está en la melodía y en la dinámica: el coro sube en intensidad sin cambiar la armonía. Si llevás la primera, construí por registro — empezá abajo y subí en cada vuelta.",
+ secs:[
+  {n:"Intro",x:"×2",c:"2 compases",b:"Am | Am",t:"Am/C | Am/C",g:"Am7 | Am7",l:""},
+  {n:"Verso",x:"×8 frases",c:"2 compases por frase",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:""},
+  {n:"Coro",x:"×2",c:"2 compases",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:""}
+ ]},
+{n:2,t:"Loca",a:"Chico Trujillo",k:"Dm",bpm:"≈97",st:"Cumbia chilena",v:"ok",zt:"trastes 3–8",za:"trastes 2–7",
+ forma:"Intro punteada → Verso → Estribillo → Verso 2 → Estribillo → Solo → Estribillo final",
+ rol:"<b>El punteo de la intro es tuyo.</b> Vive alrededor de los trastes 10-12 en las tres primeras cuerdas. Lo que estás tocando encima es un <b>descenso cromático en el bajo</b>: Re → Do# → Do → Si, mientras el acorde sigue siendo Rem. Ese movimiento es el gancho del tema; si lo tocás como cuatro acordes sueltos se pierde. Pensalo como una sola línea que baja.",
+ secs:[
+  {n:"Intro / Verso",x:"×2",c:"4 compases",cue:"“Loca, loca, loca…”",b:"Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:""},
+  {n:"Estribillo",x:"×2",c:"6 compases",cue:"“Qué mala suerte en el amor…”",b:"Gm | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm | A7",t:"Gm/D | A7 | Dm  Dmmaj7 | Dm7  Dm6 | Gm/D | A7",g:"Gm7 | A7b9 | Dm  Dmmaj7 | Dm7  Dm6 | Gm7 | A7b9",l:""}
+ ]},
+{n:3,t:"Yo Tomo",a:"Bersuit Vergarabat · «Libertinaje», 1998",k:"Am",bpm:"≈145",st:"Rock / murga",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Intro con power chords → Verso ×2 → Estribillo → Verso → Estribillo → Solo → Estribillo hasta el final",
+ rol:"La intro son <b>quintas (power chords), no acordes completos</b>: A5–D5 alternando, con distorsión y sin tercera. Ahí no hay armonía que definir, es puro riff. En el verso pasás a acordes normales. El solo va sobre Am–Dm–E: escala menor de La, y sobre el Mi subís el Sol a Sol#.",
+ secs:[
+  {n:"Intro",x:"×2",c:"4 compases",b:"A5  D5 | A5  D5 | A5  D5 | E5",t:"A5  D5 | A5  D5 | A5  D5 | E5",g:"A5  D5 | A5  D5 | A5  D5 | E5",l:""},
+  {n:"Verso",x:"×2 coplas",c:"4 compases",cue:"“¿Quién sos? ¿Cómo sos?…”",b:"Am | Dm | E | Am  E",t:"Am/C | Dm | E/B | Am/C  E/B",g:"Am7 | Dm7 | E7b9 | Am7  E7b9",l:""},
+  {n:"Estribillo",x:"×4",c:"2 compases",cue:"“Tomo para no enamorarme…”",b:"Am  E | E  Am",t:"Am/C  E/B | E/B  Am/C",g:"Am7  E7b9 | E7b9  Am7",l:""}
+ ]},
+{n:4,t:"Poco a Poco",a:"Los Tekis",k:"C / Am",bpm:"≈150",st:"Huayno",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Intro de quena o charango → Verso ×2 → Instrumental → Verso → empalme con Cariñito",
+ rol:"Huayno <b>bimodal</b>: las frases arrancan en Do mayor y caen en La menor. No es un error de transcripción, es cómo funciona el género — el mismo material suena alegre al empezar y melancólico al terminar. Si hacés el requinto, la melodía de quena está en la pentatónica de La menor y es casi literal.",
+ secs:[
+  {n:"Verso",x:"×2",c:"5 compases",cue:"“Poco, poco a poco me has querido…”",b:"C  G | C | G  C | D  C | Am",t:"C  G/D | C | G/D  C | D  C | Am/C",g:"Cadd9  Gadd9 | Cadd9 | Gadd9  Cadd9 | Dadd9  Cadd9 | Am7",l:""}
+ ]},
+{n:5,t:"Flor de un Día",a:"Savia Andina · «El Minero», 1980",k:"Em",bpm:"≈87",st:"Andino boliviano",v:"oido",zt:"trastes 2–8",za:"trastes 1–7",
+ forma:"Intro de quena → Verso ×2 → Parte mayor → Verso → Parte mayor → Coda",
+ rol:"El tono Mi menor está confirmado por análisis del audio; <b>la estructura la reconstruí de oído y hay que revisarla</b>. La melodía es de quena y charango: si la doblás en requinto, tocá <b>una octava abajo de la quena</b> o se pelean. Frases largas, sin adornos.",
+ secs:[
+  {n:"Verso",x:"×2",c:"4 compases",b:"Em | Bm | Em | Bm",t:"Em/B | Bm | Em/B | Bm",g:"Em9 | Bm7 | Em9 | Bm7",l:""},
+  {n:"Parte mayor",x:"×2",c:"4 compases",b:"C | D | G | Em",t:"C | D | G/D | Em/B",g:"Cadd9 | Dadd9 | Gadd9 | Em9",l:""}
+ ]},
+{n:6,t:"Ojos Azules",a:"Gilberto Rojas · 1947",k:"Am",bpm:"≈120",st:"Taquirari / huayno",v:"oido",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Intro instrumental → Verso ×2 → Estribillo → Verso → Estribillo → Coda acelerada",
+ rol:"El tono La menor está confirmado, la estructura la reconstruí de oído. Dato: <b>es boliviana y originalmente un taquirari</b>, no un huayno peruano. La melodía principal es de quena y cae casi entera en la pentatónica de La menor: si la doblás en requinto, notas separadas y sin vibrato.",
+ secs:[
+  {n:"Verso",x:"×2",c:"4 compases",b:"Am | G | C | E7",t:"Am/C | G/D | C | E7",g:"Am7 | Gadd9 | Cadd9 | E7b9",l:""},
+  {n:"Estribillo",x:"×2",c:"4 compases",b:"Am | E7 | Am | Am",t:"Am/C | E7 | Am/C | Am/C",g:"Am7 | E7b9 | Am7 | Am7",l:""}
+ ]},
+{n:7,t:"Gimme the Power",a:"Molotov",k:"Am",bpm:"≈100",st:"Rap rock",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Intro → Verso rapeado → Coro → Verso → Coro → Puente → Coro hasta el final",
+ rol:"Cuatro acordes en bucle: <b>cadencia andaluza</b> (i–VII–VI–V). Como primera guitarra, el riff de octavas y los rellenos entre frases rapeadas son tuyos. El modo avanzado sobra acá: en rock crudo, básicos o quintas.",
+ secs:[
+  {n:"Todo el tema",x:"en bucle",c:"4 compases",b:"Am | G | F | E",t:"Am/C | G/D | F/C | E/B",g:"Am7 | Gadd9 | Fadd9 | E7b9",l:""}
+ ]},
+{n:8,t:"Ya se ha Muerto mi Abuelo",a:"—",k:"?",bpm:"?",st:"Huayno",v:"dud",zt:"",za:"",forma:"",
+ dud:"Es un huayno conocido pero circula en varias versiones y tonos distintos. Decime qué grupo tocan ustedes como referencia.",rol:"",secs:[]},
+{n:9,t:"La Piragua",a:"José Barros",k:"Dm",bpm:"≈100",st:"Cumbia colombiana",v:"ok",zt:"trastes 3–7",za:"trastes 2–7",
+ forma:"Coro instrumental → Verso → Coro → Verso → Coro → Solo de gaita → Coro final",
+ rol:"Cumbia clásica colombiana. En el original la melodía la lleva la <b>gaita</b>: si la hacés en requinto, es una línea larga y sin adornos. El verso se mueve más de lo que parece — el bloque <b>C7–F</b> te saca de Rem hacia Fa mayor por dos compases, y ahí la melodía se abre.",
+ secs:[
+  {n:"Coro",x:"×2",c:"4 compases",cue:"“La piragua, la piragua…”",b:"Dm | C | Dm | C",t:"Dm | C | Dm | C",g:"Dm7 | Cadd9 | Dm7 | Cadd9",l:""},
+  {n:"Verso",x:"×4 coplas",c:"8 compases",cue:"“Me contaron los abuelos…”",b:"Dm  A7 | Dm | C7 | F | C7 | F | Dm  A7 | Dm",t:"Dm  A7 | Dm | C7 | F/C | C7 | F/C | Dm  A7 | Dm",g:"Dm7  A7b9 | Dm7 | C9 | Fadd9 | C9 | Fadd9 | Dm7  A7b9 | Dm7",l:""}
+ ]},
+{n:10,t:"Lamento Boliviano",a:"Enanitos Verdes",k:"Em",bpm:"≈125",st:"Rock",v:"ok",zt:"trastes 2–5",za:"trastes 1–7",
+ forma:"Intro → Verso ×2 → Puente → Coro ×2 → Solo → Puente → Coro ×2",
+ rol:"Cuatro acordes que no cambian nunca, <b>ni siquiera en el solo</b>. Eso te deja todo el espacio: el solo del disco vive en la pentatónica de Mi menor entre el traste 12 y el nut. El B7 del cuarto compás es el único punto donde la armonía empuja — apoyate ahí para cerrar las frases.",
+ secs:[
+  {n:"Verso",x:"×2",c:"4 compases",cue:"“Me quieren agitar…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""},
+  {n:"Puente",x:"×1",c:"4 compases",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""},
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Y yo estoy aquí…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""}
+ ]},
+{n:11,t:"El Cóndor Pasa",a:"Daniel Alomía Robles · 1913",k:"Am",bpm:"lento → ≈130",st:"Yaraví + cachua",v:"oido",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Yaraví (lento, libre) → Cachua (rápido) → Cachua hasta el final",
+ rol:"Reconstruido de oído — <b>confirmame cuál arreglo hacen</b>. La andina instrumental va en La menor con dos tempos (yaraví lento y cachua rápida); la de Simon & Garfunkel va en Mi menor y es un solo tempo. Si llevás la melodía, la parte lenta es casi recitada: notas largas, sin vibrato, y silencios largos entre frases.",
+ secs:[
+  {n:"Yaraví (lento)",x:"×2",c:"4 compases · rubato",b:"Am | C | G | Am",t:"Am/C | C | G/D | Am/C",g:"Am7 | Cadd9 | Gadd9 | Am7",l:""},
+  {n:"Cachua (rápido)",x:"×4",c:"4 compases",b:"C | G | C | Am",t:"C | G/D | C | Am/C",g:"Cadd9 | Gadd9 | Cadd9 | Am7",l:""}
+ ]},
+{n:12,t:"La Sirena",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"Hay varias: una cumbia sonidera, un carnaval andino y otras. Pasame el artista.",rol:"",secs:[]},
+{n:13,t:"Cariñito",a:"Los Hijos del Sol",k:"Am",bpm:"≈100",st:"Cumbia peruana",v:"ok",zt:"trastes 3–6",za:"trastes 0–5",
+ forma:"Intro punteada → Verso → “Ay cariño” → Estribillo → repetir todo",
+ rol:"<b>El punteo de este tema es de los más reconocibles de la cumbia peruana y te toca a vos.</b> Vive en la pentatónica de La menor, con el sonido característico de guitarra limpia con delay corto y mucho ataque. Tocá con púa cerca del puente y dejá que la percusión sostenga el groove.",
+ secs:[
+  {n:"Intro / Verso",x:"×2",c:"4 compases",b:"Am | C  E7 | Am | Am",t:"Am/C | C  E7 | Am/C | Am/C",g:"Am7 | Cmaj7  E7b9 | Am7 | Am7",l:""},
+  {n:"Puente",x:"×1",c:"4 compases",cue:"“Ay cariño, ay mi vida”",b:"F | C | F | C",t:"F/C | C | F/C | C",g:"Fadd9 | Cadd9 | Fadd9 | Cadd9",l:""},
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Nunca pero nunca…”",b:"E7 | Am | C  E7 | Am",t:"E7 | Am/C | C  E7 | Am/C",g:"E7b9 | Am7 | Cmaj7  E7b9 | Am7",l:""}
+ ]},
+{n:14,t:"La Selva Amazónica",a:"Los Mirlos / versión de Chicha Libre",k:"Gm",bpm:"≈115",st:"Chicha / cumbia amazónica",v:"oido",zt:"trastes 3–8",za:"trastes 3–7",
+ forma:"Riff de guitarra → Riff con variación → Estribillo cantado → Riff → Solo de órgano → Riff final",
+ rol:"<b>Casi seguro es «Sonido Amazónico» de Los Mirlos</b>, que Chicha Libre versionó: la frase “en la selva amazónica no hay primavera” es de ahí. Y es <b>el tema más importante del set para vos</b>: la canción <i>es</i> el riff de guitarra, no los acordes. Vive alrededor de los trastes 3 a 6, con wah y reverb de resorte. Los dos acordes están solo para sostenerlo.<br><br>La armonía la reconstruí de oído: verificá con la banda antes del ensayo.",
+ secs:[
+  {n:"Riff / todo el tema",x:"en bucle",c:"2 compases",b:"Gm | D7",t:"Gm/D | D7",g:"Gm7 | D7b9",l:""}
+ ]},
+{n:15,t:"Escogió mi Corazón",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"No la identifiqué. Pasame el artista.",rol:"",secs:[]},
+{n:16,t:"Moliendo Café",a:"Hugo Blanco · 1958",k:"Am",bpm:"≈120",st:"Orquídea / joropo",v:"ok",zt:"trastes 1–8",za:"trastes 0–5",
+ forma:"Intro instrumental → Verso ×2 → Estribillo → Verso → Estribillo → Coda",
+ rol:"Venezolana, ritmo <b>orquídea</b> — invento de Hugo Blanco mezclando joropo y música cubana. El verso encadena <b>dos dominantes secundarios</b>: A7 empuja a Dm, G7 empuja a C. Si llevás la melodía, esos dos compases son donde hay que subir el Do a Do# y el Fa a Fa#; el resto es La menor plano.",
+ secs:[
+  {n:"Verso",x:"×2",c:"5 compases",cue:"“Cuando la tarde languidece…”",b:"Am | A7  Dm | G7  C | F  E7 | Am",t:"Am/C | A7  Dm | G7  C | F/C  E7 | Am/C",g:"Am7 | A7b9  Dm7 | G13  Cadd9 | Fadd9  E7b9 | Am7",l:""},
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Una pena de amor…”",b:"Dm  Am | Dm  Am | F | E7",t:"Dm  Am/C | Dm  Am/C | F/C | E7",g:"Dm7  Am7 | Dm7  Am7 | Fadd9 | E7b9",l:""}
+ ]},
+{n:17,t:"Señora Chichera",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"No la identifiqué. Suena a saya o caporal boliviano. Pasame el artista.",rol:"",secs:[]},
+{n:18,t:"Carnavalito + Reina de Cumbias",a:"El Humahuaqueño / Celso Piña",k:"Am",bpm:"≈130 → ≈95",st:"Carnavalito → cumbia",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
+ forma:"Humahuaqueño: Verso ×2 → Estribillo ×2 → Coda → empalme → Reina de Cumbias en bucle",
+ rol:"<b>Los dos están en La menor: el empalme es directo, sin modulación.</b> Eso es suerte y hay que aprovecharlo — el corte puede ser en seco, solo cambiando el tempo y el groove. El Humahuaqueño va rápido en 2/4; Reina de Cumbias baja a cumbia rebajada. La melodía del carnavalito es de quena: si la hacés en requinto, notas cortas y separadas, nada de ligados.",
+ secs:[
+  {n:"Humahuaqueño · verso",x:"×2",c:"4 compases",cue:"“Llegando está el carnaval…”",b:"Am  F | G7  C | Am  F | G7  C",t:"Am/C  F/C | G7  C | Am/C  F/C | G7  C",g:"Am7  Fadd9 | G13  Cadd9 | Am7  Fadd9 | G13  Cadd9",l:""},
+  {n:"Humahuaqueño · estribillo",x:"×2",c:"4 compases",cue:"“Fiesta de la quebrada…”",b:"Am  C | E7  Am | C  Am | E7  Am",t:"Am/C  C | E7  Am/C | C  Am/C | E7  Am/C",g:"Am7  Cadd9 | E7b9  Am7 | Cadd9  Am7 | E7b9  Am7",l:""},
+  {n:"Humahuaqueño · coda",x:"×2",c:"2 compases",cue:"“Quebradeño, humahuaqueñito”",b:"F  G7 | C",t:"F/C  G7 | C",g:"Fadd9  G13 | Cadd9",l:""},
+  {n:"Reina de Cumbias",x:"en bucle",c:"2 compases",b:"Am | E7",t:"Am/C | E7",g:"Am7 | E7b9",l:""}
+ ]},
+{n:19,t:"La Negra Tomasa",a:"Guillermo Rodríguez Fiffe",k:"Dm",bpm:"≈88",st:"Guaracha",v:"oido",zt:"trastes 3–7",za:"trastes 5–7",
+ forma:"Intro → Verso ×2 → Coro “ay ay ay” → Verso → Coro hasta el final",
+ rol:"Guaracha cubana de 1938, popularizada en rock por Caifanes. Dos acordes todo el tema, así que el interés está en el fraseo. Sobre el <b>A7</b> tenés Do# y Si♭ disponibles: esas dos notas son la diferencia entre sonar a salsa y sonar a rock en menor.",
+ secs:[
+  {n:"Verso",x:"×4",c:"4 compases",b:"Dm | A7 | Dm | A7",t:"Dm | A7 | Dm | A7",g:"Dm7 | A7b9 | Dm7 | A7b9",l:""},
+  {n:"Coro “ay ay ay”",x:"×2",c:"4 compases",b:"Dm | Bb | A7 | Dm",t:"Dm | Bb/D | A7 | Dm",g:"Dm7 | Bbmaj7 | A7b9 | Dm7",l:""}
+ ]},
+{n:20,t:"Baila Negra",a:"Sajama",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"Grupo identificado, pero no encontré transcripción publicada ni análisis del audio. No te la voy a inventar. Mandame un link de YouTube o decime el tono y los acordes que usan y la armo con todo lo demás.",rol:"",secs:[]},
+{n:21,t:"El Acuartillado",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"No la identifiqué, y tampoco estoy seguro de la grafía del título. Pasame el artista.",rol:"",secs:[]},
+{n:22,t:"El Toro Pinto",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"No la identifiqué con certeza. Pasame el artista.",rol:"",secs:[]},
+{n:23,t:"Rosa María",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
+ dud:"Hay varias con ese nombre. Pasame el artista.",rol:"",secs:[]},
+{n:24,t:"María Teresa",a:"Los 50 de Joselito",k:"?",bpm:"?",st:"Cumbia",v:"dud",zt:"",za:"",forma:"",
+ dud:"Grupo identificado, pero no hay transcripción publicada que pueda contrastar. Mandame un link o el tono y la armo.",rol:"",secs:[]},
+{n:25,t:"El Ratón",a:"Cheo Feliciano · Fania",k:"Am",bpm:"≈94",st:"Salsa",v:"ok",zt:"trastes 3–8",za:"trastes 0–6",
+ forma:"Intro → Verso largo → Puente → Coro / montuno → Solos → Coro hasta el final",
+ rol:"El verso tiene el truco del tema: <b>C7 → B7 → B♭7, tres dominantes bajando cromáticamente</b> antes de volver al Lam. No son acordes de paso, es la armonía. Como primera guitarra podés doblar esa bajada con las terceras y séptimas en vez de rasguear los acordes enteros — así se oye el movimiento.",
+ secs:[
+  {n:"Verso",x:"×8 frases",c:"2 compases",cue:"“Mi gato se está quejando…”",b:"Am  C7 | B7  Bb7",t:"Am/C  C7 | B7  Bb7",g:"Am7  C9 | B7  Bb7",l:""},
+  {n:"Puente",x:"×1",c:"4 compases",b:"Am | F | Em | E7",t:"Am/C | F/C | Em/B | E7",g:"Am7 | Fadd9 | Em7 | E7b9",l:""},
+  {n:"Coro / montuno",x:"muchas veces",c:"4 compases",cue:"“De cualquier maya sale un ratón…”",b:"Am | Dm | E7 | Am",t:"Am/C | Dm | E7 | Am/C",g:"Am7 | Dm7 | E7b9 | Am7",l:""}
+ ]},
+{n:26,t:"El Camaleón",a:"Widinson",k:"Cm",bpm:"≈115",st:"Tecnocumbia ecuatoriana",v:"oido",zt:"trastes 6–8",za:"trastes 1–5",
+ forma:"Intro de teclado → Verso → Estribillo → Verso → Estribillo → Solo → Estribillo",
+ rol:"Dos acordes en todo el tema: <b>Cm y B♭</b>, o sea i–♭VII. Eso significa que <b>no hay sensible</b> — nunca aparece el Si natural — y por eso suena modal y no resuelve nunca. Todo el interés está en la melodía. Si hacés el requinto, esa línea es el tema: el acompañamiento es solo colchón.<br><br><b>Verificá el tono con la banda:</b> las transcripciones circulan en Cm y en Ebm, un tono y medio de diferencia. Puse Cm, que es lo que da el análisis del audio.",
+ secs:[
+  {n:"Todo el tema",x:"en bucle",c:"2 compases",cue:"“El camaleón cambia de colores…”",b:"Cm | Bb",t:"Cm/Eb | Bb/D",g:"Cm9 | Bb",l:""}
+ ]}
+];
+
+/* ============ ESCALAS PARA IMPROVISAR ============ */
+/* t: tipo · r: nota raíz · R: traste de la raíz en la 6ª cuerda · n: nota de uso */
+const ESCALAS={
+ 1:{t:"menor",r:"A",R:5,n:"Sin dominante no hay nota que empuje: <b>el Sol# no aparece nunca</b>, así que la caja funciona entera sin una sola alteración. Eso hace que el tema sea muy fácil de improvisar y muy fácil de aburrir — trabajá el registro y el silencio, no las notas."},
+ 5:{t:"menor",r:"E",R:12,n:"La misma caja existe al aire, en el traste 0. En la parte mayor (C–D–G) el centro se corre: apoyate en Sol y en Si en vez de en Mi, y la misma escala suena luminosa."},
+ 14:{t:"menor",r:"G",R:3,n:"<b>Acá la escala no es para improvisar, es para el riff.</b> Todo el tema vive en esta caja entre los trastes 3 y 6. Púa cerca del puente, wah medio abierto y reverb de resorte: el sonido es tan parte del tema como las notas."},
+ 2:{t:"menor",r:"D",R:10,n:"La caja te sirve para el punteo de la intro. Ojo: sobre el descenso <b>Dmmaj7 → Dm7 → Dm6</b> la nota que se mueve es la que baja de Do# a Do a Si — ninguna de esas tres está en la pentatónica. Ese es justamente el sonido del tema, así que tocalas aunque estén fuera de la caja."},
+ 3:{t:"menor",r:"A",R:5,n:"Rock directo: la pentatónica menor de La cubre todo. Sobre el <b>E</b> del cuarto compás subí el Sol a <b>Sol#</b> y resolvés a La."},
+ 4:{t:"menor",r:"A",R:5,n:"La melodía de quena de este huayno está casi entera en esta caja. Notas cortas y separadas, sin ligados: la quena no liga."},
+ 18:{t:"menor",r:"A",R:5,n:"<b>Una sola caja para las dos canciones del popurrí</b>, porque las dos están en La menor. En el carnavalito, corcheas parejas y secas; en Reina de Cumbias, frases largas y perezosas encima del mismo material."},
+ 25:{t:"menor",r:"A",R:5,n:"Sirve para el coro y el puente, pero <b>no para el verso</b>: sobre C7–B7–B♭7 la pentatónica choca en casi todos los compases. Ahí no improvises, doblá la bajada cromática o dejá el hueco."},
+ 26:{t:"menor",r:"C",R:8,n:"Dos acordes sin sensible, así que la caja funciona de punta a punta sin una sola nota de fuera. Es el tema más libre del set para improvisar — y el que más se nota si repetís frases."},
+ 6:{t:"menor",r:"A",R:5,n:"Huayno andino: la melodía es pentatónica de nacimiento, así que la caja te da casi la melodía original. Frases cortas y descendentes, que es como cantan las quenas."},
+ 7:{t:"menor",r:"A",R:5,n:"Cadencia andaluza. Sobre el <b>E</b> del cuarto compás la escala se pone floja: apuntá al <b>Sol#</b>, un traste arriba del Sol, y resolvés a La. Es la única nota de fuera que necesitás en todo el tema."},
+ 9:{t:"menor",r:"D",R:10,n:"En el verso aparecen <b>C7 y F</b>, que no están en la caja. Sobre esos dos compases el centro se corre a Fa mayor: podés pensar la misma escala pero apoyándote en Fa y en Do en vez de en Re."},
+ 10:{t:"menor",r:"E",R:12,n:"La misma caja existe al aire, en el traste 0 — el solo del disco vive entre las dos. Sobre el <b>B7</b> del cuarto compás, subí el Re a <b>Re#</b>: es la tercera del dominante y es lo que hace que el ciclo cierre."},
+ 11:{t:"menor",r:"A",R:5,n:"En la parte lenta, notas largas y sin vibrato: el yaraví es casi recitado. En la cachua, corcheas parejas. Es el mismo material melódico tocado de dos maneras opuestas."},
+ 13:{t:"menor",r:"A",R:5,n:"Ojo: la melodía de la primera guitarra ya usa esta escala. Si vas a improvisar, hacelo en los huecos, no encima."},
+ 16:{t:"menor",r:"A",R:5,n:"El tema se mueve mucho para ser pentatónico. Sobre el <b>A7</b> subí el Do a <b>Do#</b>; sobre el <b>G7</b> apuntá al <b>Si</b>; sobre el <b>E7</b>, al <b>Sol#</b>. Tres notas de fuera, una por dominante."},
+ 19:{t:"menor",r:"D",R:10,n:"Sobre el <b>A7</b> tenés dos notas que valen oro: <b>Do#</b> y <b>Si♭</b>, cada una un traste arriba de una que ya está en la caja. Son la tercera y la novena menor del dominante."}
+};
+
+function escalaSVG(R,tipo,raiz){
+  const men=[[R,R+3],[R,R+2],[R,R+2],[R,R+2],[R,R+3],[R,R+3]];
+  const may=[[R,R+2],[R-1,R+2],[R-1,R+2],[R-1,R+1],[R,R+2],[R,R+2]];
+  const sh=(tipo==="menor")?men:may;              // índice 0 = 6ª cuerda
+  let lo=99,hi=0;
+  sh.forEach(function(p){p.forEach(function(f){ if(f<lo)lo=f; if(f>hi)hi=f; });});
+  const cells=hi-lo+1;
+  const W=300,H=150,L=16,Rp=14,top=20,gap=19;
+  const cw=(W-L-Rp)/cells, x2=W-Rp, yBot=top+5*gap;
+  let s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">';
+  // cuerdas (arriba = 1ª)
+  for(let i=0;i<6;i++){
+    const y=top+i*gap;
+    s+='<line x1="'+L+'" y1="'+y+'" x2="'+x2+'" y2="'+y+'" stroke="#413A32" stroke-width="'+(1+i*0.22).toFixed(2)+'"/>';
+  }
+  // trastes
+  for(let i=0;i<=cells;i++){
+    const x=L+i*cw;
+    const grueso=(lo===1&&i===0);
+    s+='<line x1="'+x+'" y1="'+top+'" x2="'+x+'" y2="'+yBot+'" stroke="'+(grueso?"#F2EADC":"#413A32")+'" stroke-width="'+(grueso?4:1)+'"/>';
+  }
+  // números de traste
+  for(let i=0;i<cells;i++){
+    s+='<text x="'+(L+(i+0.5)*cw)+'" y="'+(yBot+22)+'" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" fill="#6D675E">'+(lo+i)+'</text>';
+  }
+  // notas
+  const raizEn={0:R,2:R+2,5:R};
+  sh.forEach(function(pares,si){
+    const y=top+(5-si)*gap;
+    pares.forEach(function(f){
+      const x=L+(f-lo+0.5)*cw;
+      const esRaiz=(raizEn[si]===f);
+      if(esRaiz){
+        s+='<circle cx="'+x+'" cy="'+y+'" r="8.5" fill="#2FA69B"/>';
+        s+='<text x="'+x+'" y="'+(y+3.6)+'" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="9" fill="#0E1512">'+raiz+'</text>';
+      }else{
+        s+='<circle cx="'+x+'" cy="'+y+'" r="6.5" fill="#F0B429"/>';
+      }
+    });
+  });
+  return s+'</svg>';
+}
+
+function escalaHTML(n){
+  const e=ESCALAS[n]; if(!e) return "";
+  const nombre=(notac==="es"?(LAT[e.r]||e.r):e.r)+" "+(e.t==="menor"?"menor pentatónica":"mayor pentatónica");
+  return '<div class="escBlk"><div class="h">Para improvisar</div>'
+    +'<div class="t">'+nombre+' · traste '+(e.t==="menor"?e.R:e.R-1)+'</div>'
+    +escalaSVG(e.R,e.t,(notac==="es"?(LAT[e.r]||e.r):e.r))
+    +'<div class="n"><b style="color:var(--turquesa)">●</b> raíz · desde esta caja te movés por CAGED a las otras cuatro posiciones.<br><br>'+e.n+'</div></div>';
+}
+
+/* ============ ESTADO ============ */
+let modo="b", notac="en", esc=1, vista="indice", actual=null, verLetra=true;
+
+const LAT={"C":"DO","C#":"DO#","Db":"REb","D":"RE","D#":"MIb","Eb":"MIb","E":"MI","F":"FA","F#":"FA#","Gb":"SOLb","G":"SOL","G#":"SOL#","Ab":"LAb","A":"LA","A#":"SIb","Bb":"SIb","B":"SI"};
+function trad(ch){
+  if(notac==="en") return ch;
+  const m=ch.match(/^([A-G][#b]?)(.*)$/); if(!m) return ch;
+  return (LAT[m[1]]||m[1])+m[2];
+}
+
+/* ============ DIAGRAMA SVG ============ */
+function diagrama(nombre){
+  const lib=(modo==="t")?SHAPES_ALT:(modo==="a")?SHAPES_ADV:SHAPES;
+  const f=lib[nombre]||SHAPES[nombre]; if(!f) return "";
+  const son=f.filter(function(x){return x>0;});
+  const hayAire=f.indexOf(0)>-1;
+  const min=son.length?Math.min.apply(null,son):1;
+  const max=son.length?Math.max.apply(null,son):4;
+  const nTr=5;
+  let base=1;
+  if(max>nTr) base=min;
+  else if(!hayAire && min>=3) base=min;
+  const W=88,H=98,x0=26,gx=52,cw=gx/5,y0=22,rh=(H-y0-10)/nTr;
+  let s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" aria-hidden="true">';
+  if(base===1){
+    s+='<rect x="'+(x0-1.5)+'" y="'+(y0-4)+'" width="'+(gx+3)+'" height="4.5" fill="#F2EADC" rx="1"/>';
+  }else{
+    s+='<text x="'+(x0-7)+'" y="'+(y0+rh*0.5+4.5)+'" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="13" font-weight="700" fill="#2FA69B">'+base+'</text>';
+    s+='<text x="'+(x0-7)+'" y="'+(y0+rh*1.55+4)+'" text-anchor="end" font-family="Archivo,sans-serif" font-size="7.5" fill="#4E4A43">tr.</text>';
+  }
+  for(let i=0;i<6;i++) s+='<line x1="'+(x0+i*cw)+'" y1="'+y0+'" x2="'+(x0+i*cw)+'" y2="'+(y0+nTr*rh)+'" stroke="#413A32" stroke-width="1"/>';
+  for(let j=0;j<=nTr;j++) s+='<line x1="'+x0+'" y1="'+(y0+j*rh)+'" x2="'+(x0+gx)+'" y2="'+(y0+j*rh)+'" stroke="#413A32" stroke-width="1"/>';
+  f.forEach(function(fr,i){
+    const cx=x0+i*cw;
+    if(fr===-1){
+      s+='<text x="'+cx+'" y="'+(y0-7)+'" font-size="10" text-anchor="middle" fill="#6B5049" font-family="Archivo,sans-serif">×</text>';
+    }else if(fr===0){
+      s+='<circle cx="'+cx+'" cy="'+(y0-10)+'" r="3.2" fill="none" stroke="#2FA69B" stroke-width="1.4"/>';
+    }else{
+      const pos=fr-base+1;
+      if(pos>=1&&pos<=nTr) s+='<circle cx="'+cx+'" cy="'+(y0+(pos-.5)*rh)+'" r="5" fill="#F0B429"/>';
+    }
+  });
+  return s+'</svg>';
+}
+
+/* ============ UTILIDADES ============ */
+function esc_(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function barra(x){
+  const act=(modo==="b"?x.b:modo==="t"?x.t:x.g).split("|");
+  const bas=x.b.split("|");
+  return act.map(function(c,ci){
+    const a=c.trim().split(/\s+/).filter(Boolean);
+    const b=(bas[ci]||"").trim().split(/\s+/).filter(Boolean);
+    return a.map(function(ac,i){
+      const eq=(modo!=="b"&&b[i]&&b[i]!==ac)?'<span class="eq">'+trad(b[i])+'</span>':'';
+      return '<span class="c'+(i>0?" sec2":"")+'">'+trad(ac)+eq+'</span>';
+    }).join(" ");
+  }).join('<span class="p">|</span>');
+}
+
+/* Detecta si una línea es de acordes (solo cifrados y espacios) */
+const RE_AC=/^[\s]*(?:[A-G][#b]?(?:maj|m|min|dim|aug|sus|add)?[0-9#b\/A-Gsu]*[\s\-\|]*)+$/;
+function letraHTML(txt){
+  if(!txt) return "";
+  return txt.split("\n").map(function(li){
+    if(li.trim()==="") return '<span class="lt"> </span>';
+    if(RE_AC.test(li)) return '<span class="ac">'+esc_(li)+'</span>';
+    return '<span class="lt">'+esc_(li)+'</span>';
+  }).join("\n");
+}
+
+function zonaDe(s){ return modo==="t"?s.zt:modo==="a"?s.za:""; }
+
+function acordesDe(s){
+  const out=[],vistos=[];
+  s.secs.forEach(function(x){
+    const act=(modo==="b"?x.b:modo==="t"?x.t:x.g).split("|");
+    const bas=x.b.split("|");
+    act.forEach(function(c,ci){
+      const a=c.trim().split(/\s+/).filter(Boolean);
+      const b=(bas[ci]||"").trim().split(/\s+/).filter(Boolean);
+      a.forEach(function(ac,i){
+        if(vistos.indexOf(ac)<0){ vistos.push(ac); out.push([ac,b[i]||""]); }
+      });
+    });
+  });
+  return out;
+}
+
+/* ============ VISTAS ============ */
+function vistaIndice(){
+  vista="indice"; actual=null;
+  document.getElementById("volver").classList.add("oculto");
+  document.getElementById("marca").innerHTML='LA <span>TRIBU</span>';
+  document.getElementById("main").innerHTML=
+    '<div class="hero"><h1>13 temas.<br>Segunda guitarra.</h1>'
+    +'<p>26 temas · primera guitarra y requinto. Tocá uno para abrirlo solo.<br><br>'+'Los tres modos son para cuando <b>acompañás</b>. Cuando llevás la melodía, lo que importa es el bloque de escala al final de cada tema y la nota sobre qué hace el requinto ahí.<br>'
+    +'<b>Básico</b> — acordes abiertos en primera posición.<br>'
+    +'<b>Tríadas</b> — tres notas sobre las cuerdas 3ª, 2ª y 1ª. El skank de ska y reggae: agudo, seco, deja libre todo el registro del bajo.<br>'
+    +'<b>Avanzado</b> — séptimas, novenas y trecenas en cajas de cuatro cuerdas, elegidas según el género de cada tema.<br><br>'
+    +'Los dos últimos indican la zona del mástil donde vive el tema. La armonía es la misma en los tres: cambia cuántas notas tocás y cuáles.</p></div>'
+    +'<div class="indice">'+SET.map(function(s){
+      return '<div class="item '+(s.v==="dud"?"dud":"")+'" data-n="'+s.n+'">'
+        +'<span class="num">'+String(s.n).padStart(2,"0")+'</span>'
+        +'<span><span class="tt">'+s.t+'</span><span class="aa">'+s.a+'</span></span>'
+        +'<span class="kk">'+(s.k==="?"?"?":trad(s.k.split(" ")[0]))+'</span></div>';
+    }).join("")+'</div>'
+    +'<footer><b>Cómo agregar la letra.</b> El archivo trae un hueco de letra en cada sección, vacío. '
+    +'Abrí el .html con cualquier editor de texto, buscá el campo <code>l:</code> de la sección y pegá '
+    +'entre los acentos graves el bloque copiado de un sitio de acordes, sin tocar los espacios. '
+    +'El archivo separa solo las líneas de acordes de las de letra.<br><br>'
+    +'<b>Diagramas.</b> Barra blanca gruesa arriba = cejuela. Número turquesa a la izquierda = traste donde arranca la caja. '
+    +'<span style="color:var(--turquesa)">○</span> cuerda al aire · <span style="color:#6B5049">×</span> cuerda que no suena. '
+    +'Las × no son opcionales: en las tríadas suenan solo tres cuerdas. Si dejás sonar las graves, pisás al bajo y se pierde el motivo de tocarlas arriba.<br><br>'+'<b>El nombre turquesa</b> al lado de cada acorde es el <b>acorde básico equivalente</b>. Si en medio del tema no te sale una posición, tocá ese y no se cae nada: la función armónica es la misma, solo pierde el color.<br><br>'+'<b>Nombres con barra.</b> <code>F/C</code> es Fa con Do como nota más grave: la misma tríada con las notas en otro orden. Aparecen mucho en modo Tríadas porque son justamente lo que permite encadenar acordes sin mover la mano.<br><br>'+'<b>Modo Avanzado.</b> Muchos de esos acordes van <b>sin fundamental</b> — el <code>A7</code> avanzado no toca ningún La. No es un error: la fundamental la pone el bajo, y vos aportás las notas que definen el color (tercera, séptima, novena).<br><br>'
+    +'<span style="color:var(--turquesa)">verificado</span> = contrastado con transcripciones publicadas · '
+    +'<span style="color:var(--amarillo)">por oído</span> = reconstruido, revisar con la banda · '
+    +'<span style="color:var(--rojo)">sin identificar</span> = falta confirmar artista y versión.</footer>';
+
+  document.querySelectorAll(".item").forEach(function(el){
+    el.addEventListener("click",function(){ vistaCancion(+el.dataset.n); });
+  });
+  document.getElementById("panelLbl").innerHTML="Acordes";
+  document.getElementById("strip").innerHTML='<div style="color:var(--gris);font-size:13px">Elegí un tema del índice.</div>';
+  document.getElementById("escPanel").innerHTML="";
+  window.scrollTo(0,0);
+}
+
+function vistaCancion(n){
+  vista="song"; actual=n;
+  const s=SET.find(function(x){return x.n===n;});
+  document.getElementById("volver").classList.remove("oculto");
+  document.getElementById("marca").innerHTML=String(s.n).padStart(2,"0")+' · '+s.t;
+
+  const vtag=s.v==="ok"?'<span class="tag ok">verificado</span>'
+           :s.v==="oido"?'<span class="tag oido">por oído</span>'
+           :'<span class="tag dud">sin identificar</span>';
+
+  const secs=s.secs.map(function(x){
+    const cuerpo=x.l
+      ? '<div class="letra">'+letraHTML(x.l)+'</div>'
+      : '<div class="vacio">Sin letra todavía — pegala en el campo <code style="font-family:JetBrains Mono;color:var(--amarillo)">l:</code> de esta sección dentro del archivo.</div>';
+    return '<div class="sec"><div class="nom">'
+      +'<span>'+x.n+'</span>'
+      +'<span class="rep">'+x.x+'</span>'
+      +'<span class="cps">'+x.c+'</span>'
+      +(x.cue?'<span class="cue">'+x.cue+'</span>':'')
+      +'</div><div class="bar">'+barra(x)+'</div>'
+      +cuerpo+'</div>';
+  }).join("");
+
+  const prev=SET.find(function(x){return x.n===n-1;});
+  const next=SET.find(function(x){return x.n===n+1;});
+
+  document.getElementById("main").innerHTML='<section class="song">'
+    +'<div class="cab"><span class="num">'+String(s.n).padStart(2,"0")+'</span>'
+    +'<h2>'+s.t+'<span class="art">'+s.a+'</span></h2></div>'
+    +'<div class="meta">'
+    +(s.k!=="?"?'<span class="tag tono">'+trad(s.k.split(" ")[0])+(s.k.indexOf("cejilla")>-1?" · cejilla 3":"")+'</span>':"")
+    +(zonaDe(s)?'<span class="tag zona">'+(modo==="t"?"tríadas · ":"avanzado · ")+zonaDe(s)+'</span>':"")
+    +(s.bpm!=="?"?'<span class="tag">'+s.bpm+' BPM</span>':"")
+    +(s.st!=="?"?'<span class="tag">'+s.st+'</span>':"")
+    +vtag+'</div>'
+    +(s.forma?'<div class="forma"><span class="h">Forma del tema</span>'+s.forma.replace(/→/g,'<i>→</i>')+'</div>':"")
+    +(s.dud?'<div class="aviso"><b>Falta confirmar</b>'+s.dud+'</div>':"")
+    +(s.rol?'<div class="rol">'+s.rol+'</div>':"")
+    +'<div class="secs">'+secs+'</div>'
+    +'<div id="escSong">'+escalaHTML(s.n)+'</div>'
+    +'<div class="nav">'
+    +(prev?'<a data-go="'+prev.n+'">← '+String(prev.n).padStart(2,"0")+'<small>'+prev.t+'</small></a>':'<a data-go="0">← Índice<small>volver a la lista</small></a>')
+    +(next?'<a class="sig" data-go="'+next.n+'">'+String(next.n).padStart(2,"0")+' →<small>'+next.t+'</small></a>':'<a class="sig" data-go="0">Índice →<small>volver a la lista</small></a>')
+    +'</div></section>';
+
+  document.querySelectorAll("[data-go]").forEach(function(a){
+    a.addEventListener("click",function(){
+      const g=+a.dataset.go;
+      if(g===0) vistaIndice(); else vistaCancion(g);
+    });
+  });
+
+  document.getElementById("panelLbl").innerHTML=String(s.n).padStart(2,"0")+' · <b>'+s.t+'</b>'
+    +(modo!=="b"&&zonaDe(s)?' <span style="color:var(--turquesa)">· '+zonaDe(s)+'</span>':'');
+  document.getElementById("strip").innerHTML=s.secs.length
+    ? acordesDe(s).map(function(par){
+        const eq=(modo!=="b"&&par[1]&&par[1]!==par[0])?'<div class="eq">= '+trad(par[1])+'</div>':'';
+        return '<div class="dg"><div class="nm">'+trad(par[0])+'</div>'+eq+diagrama(par[0])+'</div>';
+      }).join("")
+    : '<div style="color:var(--gris);font-size:13px">Sin acordes todavía.</div>';
+  document.getElementById("escPanel").innerHTML=escalaHTML(s.n);
+  window.scrollTo(0,0);
+}
+
+function repintar(){
+  document.body.classList.toggle("alt",modo!=="b");
+  document.body.classList.toggle("sinletra",!verLetra);
+  if(vista==="song"&&actual) vistaCancion(actual); else vistaIndice();
+}
+
+/* ============ CONTROLES ============ */
+document.getElementById("volver").onclick=function(){ vistaIndice(); };
+function setModo(m){
+  modo=m;
+  [["b","mBas"],["t","mTri"],["a","mAdv"]].forEach(function(par){
+    document.getElementById(par[1]).classList.toggle("on",modo===par[0]);
+  });
+  repintar();
+}
+document.getElementById("mBas").onclick=function(){ setModo("b"); };
+document.getElementById("mTri").onclick=function(){ setModo("t"); };
+document.getElementById("mAdv").onclick=function(){ setModo("a"); };
+document.getElementById("nEn").onclick=function(){ notac="en";
+  document.getElementById("nEn").classList.add("on");
+  document.getElementById("nEs").classList.remove("on"); repintar(); };
+document.getElementById("nEs").onclick=function(){ notac="es";
+  document.getElementById("nEs").classList.add("on");
+  document.getElementById("nEn").classList.remove("on"); repintar(); };
+document.getElementById("bLetra").onclick=function(){ verLetra=!verLetra;
+  this.classList.toggle("on",verLetra);
+  document.body.classList.toggle("sinletra",!verLetra); };
+document.getElementById("tMas").onclick=function(){ setEsc(.1); };
+document.getElementById("tMin").onclick=function(){ setEsc(-.1); };
+function setEsc(d){ esc=Math.min(1.7,Math.max(.8,esc+d));
+  document.documentElement.style.setProperty("--esc",esc.toFixed(2)); }
+
+function medirBarra(){
+  document.documentElement.style.setProperty("--barra",document.querySelector(".top").offsetHeight+"px");
+}
+window.addEventListener("resize",medirBarra);
+
+let wl=null;
+document.getElementById("wake").onclick=async function(e){
+  const b=e.currentTarget;
+  try{
+    if(wl){ await wl.release(); wl=null; b.classList.remove("on"); b.textContent="Pantalla"; }
+    else{ wl=await navigator.wakeLock.request("screen"); b.classList.add("on"); b.textContent="Encendida"; }
+  }catch(err){ b.textContent="No disponible"; }
+};
+
+vistaIndice(); medirBarra();
+</script>
+</body>
+</html>
