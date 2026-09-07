@@ -158,7 +158,80 @@ veneno para matarme ,veneno para olvidarte`},
  forma:"Intro → Verso rapeado → Coro → Verso → Coro → Puente → Coro hasta el final",
  rol:"Cuatro acordes en bucle: <b>cadencia andaluza</b> (i–VII–VI–V). Como primera guitarra, el riff de octavas y los rellenos entre frases rapeadas son tuyos. El modo avanzado sobra acá: en rock crudo, básicos o quintas.",
  secs:[
-  {n:"Todo el tema",x:"en bucle",c:"4 compases",b:"Am | G | F | E",t:"Am/C | G/D | F/C | E/B",g:"Am7 | Gadd9 | Fadd9 | E7b9",l:""}
+  {n:"Todo el tema",x:"en bucle",c:"4 compases",b:"Am | G | F | E",t:"Am/C | G/D | F/C | E/B",g:"Am7 | Gadd9 | Fadd9 | E7b9",l:`     Am                  G  
+ LA POLICIA TE ESTA EXTORSIONANDO,
+     F             E 
+ PERO ELLOS VIVEN DE LO QUE TU ESTAS PAGANDO,
+   Am                     G  
+ SI TE TRATAN COMO UN DELINCUENTE,
+     F                 E 
+ NO ES TU CULPA DALE GRACIAS AL REGENTE.
+    Am                        G  
+ AY QUE ARRANCAR EL PROBLEMA DE RAIZ,
+    F                 E 
+ Y SACAR AL GOBIERNO DE NUESTRO PAIS,
+    Am                       G  
+ A LA GENTE QUE ESTA EN LA BUROCRACIA,
+     F              E 
+ A ESA GENTE QUE LE GUSTA LA MIGAJA,
+    Am                     G  
+ YO POR ESO ME QUEJO Y ME QUEJO,
+      F                           E 
+ POR QUE AQUÍ ES DONDE VIVO YO YA NO SOY UN PENDEJO,
+     Am                        G  
+ QUE NO HUACHA LOS GUSTOS DEL GOBIERNO,
+    F                       E 
+ HAY PERSONAS QUE SE ESTAN ENRIQUECIENDO
+     Am                 G  
+ GENTE QUE VIVE EN LA POBREZA
+       F                      E 
+ Y NADIE HACE NADA POR QUE A NADIE LE INTERESA
+     Am                   G  
+ Y ESA GENTE DE ARRIBA TE DETESTA
+        F                     E 
+ HAY MAS GENTE QUE QUIERE QUE CAIGA EN SUS CABEZAS
+     Am              G  
+ Y LE DAS MAS PODER AL PODER
+      F                 E 
+ MAS DURO TE VAN A VENIR A COGER
+     Am                  G  
+ POR QUE FUIMOS POTENCIA MUDIAL
+         F                E 
+ SOMOS POBRES NOS MANEJAN MAL.
+
+    Am                   G  
+ DAME DAME DAME TODO EL POWER
+     F                  E 
+ PARA QUE LE DEMOS EN LA MADRE
+    Am                  G  
+ GIMI GIMI GIMI TODO EL PODER
+     F                  E 
+ SOLO HAY QUIEN COME RUN THE JODER
+
+      Am                           G  
+ POR QUE NO NACIMOS DONDE NO HAY QUE COMER
+       F                       E 
+ NO HAY POR QUE PREGUNTARNOS COMO LE VAMOS A HACER
+     Am                    G  
+ SI NOS PINTAN COMO UNOS HUEVONES
+     F                     E 
+ NO LO SOMOS VIVA MEXICO CABRONES
+     Am                  G  
+ QUE SE SIENTA EL PODER MEXICANO
+      F                    E 
+ QUE SE SIENTA TODOS JUNTOS COMO HERMANOS
+     Am                       G  
+ POR QUE SOMOS MAS JALAMOS MÁS PAREJO
+     F                        E 
+ POR QUE ESTAR SIGUIENDO A UNA BOLA DE PENDEJOS
+    Am                   G  
+ QUE NOS LLEVAN POR DONDE LES CONVIENE
+      F                 E 
+ Y ES NUESTRO SUDOR LO QUE LOS MANTIENE
+     Am                    G  
+ LOS MANTIENE COMIENDO PAN CALIENTE
+     F             E 
+ ESE PAN ES EL PAN DE NUESTRA GENTE.`}
  ]},
 {n:8,t:"Ya se ha Muerto mi Abuelo",a:"—",k:"?",bpm:"?",st:"Huayno",v:"dud",zt:"",za:"",forma:"",
  dud:"Es un huayno conocido pero circula en varias versiones y tonos distintos. Decime qué grupo tocan ustedes como referencia.",rol:"",secs:[]},
