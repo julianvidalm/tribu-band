@@ -115,7 +115,14 @@ me enamoro para no tomar`}
  forma:"Intro de quena o charango → Verso ×2 → Instrumental → Verso → empalme con Cariñito",
  rol:"Huayno <b>bimodal</b>: las frases arrancan en Do mayor y caen en La menor. No es un error de transcripción, es cómo funciona el género — el mismo material suena alegre al empezar y melancólico al terminar. Si hacés el requinto, la melodía de quena está en la pentatónica de La menor y es casi literal.",
  secs:[
-  {n:"Verso",x:"×2",c:"5 compases",cue:"“Poco, poco a poco me has querido…”",b:"C  G | C | G  C | D  C | Am",t:"C  G/D | C | G/D  C | D  C | Am/C",g:"Cadd9  Gadd9 | Cadd9 | Gadd9  Cadd9 | Dadd9  Cadd9 | Am7",l:""}
+  {n:"Verso",x:"×2",c:"5 compases",cue:"“Poco, poco a poco me has querido…”",b:"C  G | C | G  C | D  C | Am",t:"C  G/D | C | G/D  C | D  C | Am/C",g:"Cadd9  Gadd9 | Cadd9 | Gadd9  Cadd9 | Dadd9  Cadd9 | Am7",l:` C                   G      C
+poco poco a poco me has querido
+               G    C
+poco apoco me has amado
+                 D       C
+y al final todo has cambiado
+                    Am
+las cositas de mi amor. x2`}
  ]},
 {n:5,t:"Flor de un Día",a:"Savia Andina · «El Minero», 1980",k:"Em",bpm:"≈87",st:"Andino boliviano",v:"oido",zt:"trastes 2–8",za:"trastes 1–7",
  forma:"Intro de quena → Verso ×2 → Parte mayor → Verso → Parte mayor → Coda",
