@@ -46,7 +46,7 @@ function vistaIndice(){
   document.getElementById("volver").classList.add("oculto");
   document.getElementById("marca").innerHTML='LA <span>TRIBU</span>';
   document.getElementById("main").innerHTML=
-    '<div class="hero"><h1>13 temas.<br>Segunda guitarra.</h1>'
+    '<div class="hero"><h1>26 temas.<br>Primera guitarra y requinto.</h1>'
     +'<p>26 temas · primera guitarra y requinto. Tocá uno para abrirlo solo.<br><br>'+'Los tres modos son para cuando <b>acompañás</b>. Cuando llevás la melodía, lo que importa es el bloque de escala al final de cada tema y la nota sobre qué hace el requinto ahí.<br>'
     +'<b>Básico</b> — acordes abiertos en primera posición.<br>'
     +'<b>Tríadas</b> — tres notas sobre las cuerdas 3ª, 2ª y 1ª. El skank de ska y reggae: agudo, seco, deja libre todo el registro del bajo.<br>'
