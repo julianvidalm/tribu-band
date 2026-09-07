@@ -42,6 +42,9 @@ npm run build   # check + genera dist/setlist-la-tribu.html
   parser de cifrados, cálculo de notas, traste base de los diagramas, parser
   de letras y el concatenador del build.
 - `npm run build` se niega a generar el archivo si el validador falla.
+- Las tipografías (Archivo, Archivo Black, JetBrains Mono) van vendoreadas en
+  `assets/fonts/` (subset latino, `.woff2`) y el build las incrusta en base64:
+  el HTML final no hace ninguna petición de red.
 
 Genera `dist/setlist-la-tribu.html`. El script (`build/build.js`) concatena los
 módulos de `src/` en orden fijo, quita las palabras `import`/`export`, envuelve
@@ -53,6 +56,7 @@ compilando dentro de años con Node y nada más.
 
 ```
 setlist-la-tribu.html   HTML original, sin modificar (punto de partida histórico)
+assets/fonts/            tipografías .woff2 que el build incrusta en el HTML
 src/
   template.html         esqueleto de la página con los marcadores {{css}} y {{js}}
   styles.css            estilos

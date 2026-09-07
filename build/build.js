@@ -14,8 +14,18 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "src");
+const FONTS_DIR = join(ROOT, "assets", "fonts");
 const OUT_DIR = join(ROOT, "dist");
 const OUT = join(OUT_DIR, "setlist-la-tribu.html");
+
+// Webfonts are vendored (latin subsets from Google Fonts) and embedded as
+// base64 so the page renders identically with no network. Archivo and
+// JetBrains Mono are variable fonts: one file covers every weight in range.
+const FONTS = [
+  { family: "Archivo", weight: "100 900", file: "archivo-latin.woff2" },
+  { family: "Archivo Black", weight: "400", file: "archivo-black-latin.woff2" },
+  { family: "JetBrains Mono", weight: "100 800", file: "jetbrains-mono-latin.woff2" },
+];
 
 // Dependency order: data first, then libs, then the UI that wires them.
 const MODULES = [
@@ -63,11 +73,21 @@ function readSrc(rel) {
   return readFileSync(p, "utf8");
 }
 
+export function fontFaceCss() {
+  return FONTS.map((f) => {
+    const p = join(FONTS_DIR, f.file);
+    if (!existsSync(p)) fail("missing font " + f.file);
+    const b64 = readFileSync(p).toString("base64");
+    return '@font-face{font-family:"' + f.family + '";font-style:normal;font-weight:' + f.weight +
+      ';font-display:block;src:url(data:font/woff2;base64,' + b64 + ') format("woff2")}';
+  }).join("\n");
+}
+
 export function main() {
   const js = MODULES.map((rel) => "/* ---- src/" + rel + " ---- */\n" + stripEsm(readSrc(rel))).join("\n\n");
   const wrapped = '(function(){\n"use strict";\n' + js + "\n})();\n";
 
-  const css = readSrc("styles.css");
+  const css = fontFaceCss() + "\n" + readSrc("styles.css");
   const template = readSrc("template.html");
   if (!template.includes("{{css}}") || !template.includes("{{js}}")) fail("template.html must contain {{css}} and {{js}}");
 
