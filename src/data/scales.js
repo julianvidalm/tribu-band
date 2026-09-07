@@ -1,0 +1,21 @@
+/* ============ ESCALAS PARA IMPROVISAR ============ */
+/* t: tipo · r: nota raíz · R: traste de la raíz en la 6ª cuerda · n: nota de uso */
+export const ESCALAS={
+ 1:{t:"menor",r:"A",R:5,n:"Sin dominante no hay nota que empuje: <b>el Sol# no aparece nunca</b>, así que la caja funciona entera sin una sola alteración. Eso hace que el tema sea muy fácil de improvisar y muy fácil de aburrir — trabajá el registro y el silencio, no las notas."},
+ 5:{t:"menor",r:"E",R:12,n:"La misma caja existe al aire, en el traste 0. En la parte mayor (C–D–G) el centro se corre: apoyate en Sol y en Si en vez de en Mi, y la misma escala suena luminosa."},
+ 14:{t:"menor",r:"G",R:3,n:"<b>Acá la escala no es para improvisar, es para el riff.</b> Todo el tema vive en esta caja entre los trastes 3 y 6. Púa cerca del puente, wah medio abierto y reverb de resorte: el sonido es tan parte del tema como las notas."},
+ 2:{t:"menor",r:"D",R:10,n:"La caja te sirve para el punteo de la intro. Ojo: sobre el descenso <b>Dmmaj7 → Dm7 → Dm6</b> la nota que se mueve es la que baja de Do# a Do a Si — ninguna de esas tres está en la pentatónica. Ese es justamente el sonido del tema, así que tocalas aunque estén fuera de la caja."},
+ 3:{t:"menor",r:"A",R:5,n:"Rock directo: la pentatónica menor de La cubre todo. Sobre el <b>E</b> del cuarto compás subí el Sol a <b>Sol#</b> y resolvés a La."},
+ 4:{t:"menor",r:"A",R:5,n:"La melodía de quena de este huayno está casi entera en esta caja. Notas cortas y separadas, sin ligados: la quena no liga."},
+ 18:{t:"menor",r:"A",R:5,n:"<b>Una sola caja para las dos canciones del popurrí</b>, porque las dos están en La menor. En el carnavalito, corcheas parejas y secas; en Reina de Cumbias, frases largas y perezosas encima del mismo material."},
+ 25:{t:"menor",r:"A",R:5,n:"Sirve para el coro y el puente, pero <b>no para el verso</b>: sobre C7–B7–B♭7 la pentatónica choca en casi todos los compases. Ahí no improvises, doblá la bajada cromática o dejá el hueco."},
+ 26:{t:"menor",r:"C",R:8,n:"Dos acordes sin sensible, así que la caja funciona de punta a punta sin una sola nota de fuera. Es el tema más libre del set para improvisar — y el que más se nota si repetís frases."},
+ 6:{t:"menor",r:"A",R:5,n:"Huayno andino: la melodía es pentatónica de nacimiento, así que la caja te da casi la melodía original. Frases cortas y descendentes, que es como cantan las quenas."},
+ 7:{t:"menor",r:"A",R:5,n:"Cadencia andaluza. Sobre el <b>E</b> del cuarto compás la escala se pone floja: apuntá al <b>Sol#</b>, un traste arriba del Sol, y resolvés a La. Es la única nota de fuera que necesitás en todo el tema."},
+ 9:{t:"menor",r:"D",R:10,n:"En el verso aparecen <b>C7 y F</b>, que no están en la caja. Sobre esos dos compases el centro se corre a Fa mayor: podés pensar la misma escala pero apoyándote en Fa y en Do en vez de en Re."},
+ 10:{t:"menor",r:"E",R:12,n:"La misma caja existe al aire, en el traste 0 — el solo del disco vive entre las dos. Sobre el <b>B7</b> del cuarto compás, subí el Re a <b>Re#</b>: es la tercera del dominante y es lo que hace que el ciclo cierre."},
+ 11:{t:"menor",r:"A",R:5,n:"En la parte lenta, notas largas y sin vibrato: el yaraví es casi recitado. En la cachua, corcheas parejas. Es el mismo material melódico tocado de dos maneras opuestas."},
+ 13:{t:"menor",r:"A",R:5,n:"Ojo: la melodía de la primera guitarra ya usa esta escala. Si vas a improvisar, hacelo en los huecos, no encima."},
+ 16:{t:"menor",r:"A",R:5,n:"El tema se mueve mucho para ser pentatónico. Sobre el <b>A7</b> subí el Do a <b>Do#</b>; sobre el <b>G7</b> apuntá al <b>Si</b>; sobre el <b>E7</b>, al <b>Sol#</b>. Tres notas de fuera, una por dominante."},
+ 19:{t:"menor",r:"D",R:10,n:"Sobre el <b>A7</b> tenés dos notas que valen oro: <b>Do#</b> y <b>Si♭</b>, cada una un traste arriba de una que ya está en la caja. Son la tercera y la novena menor del dominante."}
+};

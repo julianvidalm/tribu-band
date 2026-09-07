@@ -1,0 +1,9 @@
+{
+  "name": "setlist-la-tribu",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build/build.js"
+  }
+}
