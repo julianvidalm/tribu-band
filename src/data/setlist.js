@@ -239,8 +239,50 @@ veneno para matarme ,veneno para olvidarte`},
  forma:"Coro instrumental → Verso → Coro → Verso → Coro → Solo de gaita → Coro final",
  rol:"Cumbia clásica colombiana. En el original la melodía la lleva la <b>gaita</b>: si la hacés en requinto, es una línea larga y sin adornos. El verso se mueve más de lo que parece — el bloque <b>C7–F</b> te saca de Rem hacia Fa mayor por dos compases, y ahí la melodía se abre.",
  secs:[
-  {n:"Coro",x:"×2",c:"4 compases",cue:"“La piragua, la piragua…”",b:"Dm | C | Dm | C",t:"Dm | C | Dm | C",g:"Dm7 | Cadd9 | Dm7 | Cadd9",l:""},
-  {n:"Verso",x:"×4 coplas",c:"8 compases",cue:"“Me contaron los abuelos…”",b:"Dm  A7 | Dm | C7 | F | C7 | F | Dm  A7 | Dm",t:"Dm  A7 | Dm | C7 | F/C | C7 | F/C | Dm  A7 | Dm",g:"Dm7  A7b9 | Dm7 | C9 | Fadd9 | C9 | Fadd9 | Dm7  A7b9 | Dm7",l:""}
+  {n:"Coro",x:"×2",c:"4 compases",cue:"“La piragua, la piragua…”",b:"Dm | C | Dm | C",t:"Dm | C | Dm | C",g:"Dm7 | Cadd9 | Dm7 | Cadd9",l:`Dm  C Dm        C  Dm
+La piragua, la piragua,
+    C  Dm    C  Dm
+la piragua, la piragua...`},
+  {n:"Verso",x:"×4 coplas",c:"8 compases",cue:"“Me contaron los abuelos…”",b:"Dm  A7 | Dm | C7 | F | C7 | F | Dm  A7 | Dm",t:"Dm  A7 | Dm | C7 | F/C | C7 | F/C | Dm  A7 | Dm",g:"Dm7  A7b9 | Dm7 | C9 | Fadd9 | C9 | Fadd9 | Dm7  A7b9 | Dm7",l:`      Dm        A7               Dm
+Me contaron lo abuelos que hace tiempo,
+                C7            F
+navegaba en el Cesar una piragua,
+                C7            F
+que partia del Banco viejo puerto
+       Dm       A7           Dm
+a las playas de amor en Chimichagua.
+
+                  A7              Dm
+Zapoteando el vendaval se estremecia
+                C7           F
+e impasible desafiaba la tormenta,
+                     C7           F
+y un ejercito de estrellas la seguia
+     Dm          A7          Dm
+tachonandola de luz y de leyenda.
+
+         A7                    Dm
+Era la piragua de Guillermo Cubillos,
+         A7             Dm
+era la piragua, era la piragua. (2x)
+
+Dm                 A7           Dm
+Doce bogas con la piel color majagua
+                C7                 F
+y con ellos el temible Pedro Albundia,
+                     C7              F
+en las noches a los remos le arrancaban
+     Dm        A7              Dm
+un melodico rugir de hermosa cumbia.
+
+Dm                    A7          Dm
+Doce sombras, ahora viejos ya no reman,
+                  C7             F
+ya no cruje el maderamen en el agua,
+                  C7              F
+solo quedan los recuerdos en la arena
+       Dm       A7          Dm
+donde yace dormitando la piragua.`}
  ]},
 {n:10,t:"Lamento Boliviano",a:"Enanitos Verdes",k:"Em",bpm:"≈125",st:"Rock",v:"ok",zt:"trastes 2–5",za:"trastes 1–7",
  forma:"Intro → Verso ×2 → Puente → Coro ×2 → Solo → Puente → Coro ×2",
