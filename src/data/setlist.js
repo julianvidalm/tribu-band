@@ -491,6 +491,33 @@ Cha cu cha currucucha cu cha (4 veces)`}
  forma:"Intro de teclado → Verso → Estribillo → Verso → Estribillo → Solo → Estribillo",
  rol:"Dos acordes en todo el tema: <b>Cm y B♭</b>, o sea i–♭VII. Eso significa que <b>no hay sensible</b> — nunca aparece el Si natural — y por eso suena modal y no resuelve nunca. Todo el interés está en la melodía. Si hacés el requinto, esa línea es el tema: el acompañamiento es solo colchón.<br><br><b>Verificá el tono con la banda:</b> las transcripciones circulan en Cm y en Ebm, un tono y medio de diferencia. Puse Cm, que es lo que da el análisis del audio.",
  secs:[
-  {n:"Todo el tema",x:"en bucle",c:"2 compases",cue:"“El camaleón cambia de colores…”",b:"Cm | Bb",t:"Cm/Eb | Bb/D",g:"Cm9 | Bb",l:""}
+  {n:"Todo el tema",x:"en bucle",c:"2 compases",cue:"“El camaleón cambia de colores…”",b:"Cm | Bb",t:"Cm/Eb | Bb/D",g:"Cm9 | Bb",l:`C#                      A#
+
+El camaleón, cambia de colores
+      C#        A#
+no se según, la ocasión
+      C#                       A#
+el arco iris también cambia de colores
+      C#              A#
+no se según... la estación
+así cambiará mi destino
+                   C#
+mi amor cuando tu regreses
+      A#
+así cambiará mi destino
+                  C#
+mi amor cuando tu regreses
+
+Sea verde, que sea rojo, sea amarillo
+cualquier color, puede ser menos el gris
+Sea verde, que sea rojo, sea amarillo
+cualquier color, puede ser menos el gris
+porque grises fueron los días que yo viví
+cuando te perdí mi amor
+porque grises fueron los días que yo viví
+cuando te perdí mi amor
+
+Para ti papá, cuando te perdí mi amor
+Para ti papá, cuando te perdí mi amor`}
  ]}
 ];
