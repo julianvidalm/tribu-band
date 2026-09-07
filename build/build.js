@@ -32,13 +32,28 @@ const MODULES = [
   "data/chords.js",
   "data/setlist.js",
   "data/scales.js",
+  "data/transposiciones.json",
   "lib/notation.js",
   "lib/bars.js",
+  "lib/theory.js",
   "lib/diagram.js",
   "lib/scale.js",
   "lib/lyrics.js",
+  "lib/transpose.js",
   "ui/app.js",
 ];
+
+// JSON data files are inlined as a const with this name.
+const JSON_CONST = {
+  "data/transposiciones.json": "TRANSPOSICIONES",
+};
+
+// Turn a JSON file into a script-level constant: `const NAME = {...};`
+export function wrapJson(name, text) {
+  let value;
+  try { value = JSON.parse(text); } catch (e) { throw new Error("invalid JSON for " + name + ": " + e.message); }
+  return "const " + name + " = " + JSON.stringify(value) + ";";
+}
 
 function fail(msg) {
   console.error("build: " + msg);
@@ -83,8 +98,24 @@ export function fontFaceCss() {
   }).join("\n");
 }
 
+// Every module shares one scope after concatenation, so two modules declaring
+// the same top-level name would be a silent bug or a SyntaxError in the browser.
+export function duplicateTopLevelNames(bodies) {
+  const seen = new Map(), dups = [];
+  for (const [rel, body] of bodies) {
+    for (const m of body.matchAll(/^(?:const|let|var|function|class|async function)\s+([A-Za-z_$][\w$]*)/gm)) {
+      if (seen.has(m[1])) dups.push(m[1] + " (" + seen.get(m[1]) + ", " + rel + ")");
+      else seen.set(m[1], rel);
+    }
+  }
+  return dups;
+}
+
 export function main() {
-  const js = MODULES.map((rel) => "/* ---- src/" + rel + " ---- */\n" + stripEsm(readSrc(rel))).join("\n\n");
+  const bodies = MODULES.map((rel) => [rel, rel.endsWith(".json") ? wrapJson(JSON_CONST[rel] || fail("no const name for " + rel), readSrc(rel)) : stripEsm(readSrc(rel))]);
+  const dups = duplicateTopLevelNames(bodies);
+  if (dups.length) fail("duplicate top-level names across modules: " + dups.join("; "));
+  const js = bodies.map(([rel, body]) => "/* ---- src/" + rel + " ---- */\n" + body).join("\n\n");
   const wrapped = '(function(){\n"use strict";\n' + js + "\n})();\n";
 
   const css = fontFaceCss() + "\n" + readSrc("styles.css");

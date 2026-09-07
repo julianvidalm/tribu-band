@@ -24,6 +24,12 @@ export function libFor(modo){
 export function diagrama(nombre, modo){
   const lib=libFor(modo);
   const f=lib[nombre]||SHAPES[nombre]; if(!f) return "";
+  return diagramaShape(f);
+}
+
+// Draws any fingering, library entry or not (transposed shapes come from resolveShape).
+export function diagramaShape(f){
+  if(!f) return "";
   const nTr=N_TRASTES;
   const base=baseFret(f);
   const W=88,H=98,x0=26,gx=52,cw=gx/5,y0=22,rh=(H-y0-10)/nTr;

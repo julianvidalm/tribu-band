@@ -1,5 +1,5 @@
 import { SHAPES } from "../data/chords.js";
-import { parseNote, noteName, parseChord, checkShape } from "./theory.js";
+import { mod12, parseNote, noteName, parseChord, checkShape } from "./theory.js";
 import { libFor } from "./diagram.js";
 import { isChordLine } from "./lyrics.js";
 
@@ -8,15 +8,14 @@ import { isChordLine } from "./lyrics.js";
 // is looked up again in the mode library (a transposed D is drawn as D, its
 // triad and its advanced voicing), never as a capo over the original shapes.
 
-const mod12 = (n) => ((n % 12) + 12) % 12;
 const KEY_RE = /^([A-G][#b]?)(m|min)?$/;
 
 // Keys conventionally written with flats. Major pc 6 is named F# (not Gb) so
 // generated key names match the picker list; an explicit "Gb" still reads
 // as a flat key.
-const FLAT_MAJOR_NAMES = new Set([5, 10, 3, 8, 1]);
-const FLAT_MAJOR = new Set([5, 10, 3, 8, 1, 6]);
-const FLAT_MINOR = new Set([2, 7, 0, 5, 10, 3]);
+const KEY_FLAT_MAJOR_NAMES = new Set([5, 10, 3, 8, 1]);
+const KEY_FLAT_MAJOR = new Set([5, 10, 3, 8, 1, 6]);
+const KEY_FLAT_MINOR = new Set([2, 7, 0, 5, 10, 3]);
 
 function keyInfo(token) {
   const m = KEY_RE.exec(token || "");
@@ -26,7 +25,7 @@ function keyInfo(token) {
 
 // Spelling ("flats" | "sharps") for a key of the given pitch class and mode.
 export function spellingFor(pc, mode) {
-  const set = mode === "minor" ? FLAT_MINOR : FLAT_MAJOR_NAMES;
+  const set = mode === "minor" ? KEY_FLAT_MINOR : KEY_FLAT_MAJOR_NAMES;
   return set.has(mod12(pc)) ? "flats" : "sharps";
 }
 
@@ -40,7 +39,7 @@ export function keySpelling(keyString) {
   const info = keyInfo(String(keyString || "").trim().split(/\s+/)[0]);
   if (!info) return "sharps";
   if (info.flatName) return "flats";
-  const set = info.mode === "minor" ? FLAT_MINOR : FLAT_MAJOR;
+  const set = info.mode === "minor" ? KEY_FLAT_MINOR : KEY_FLAT_MAJOR;
   return set.has(info.root) ? "flats" : "sharps";
 }
 

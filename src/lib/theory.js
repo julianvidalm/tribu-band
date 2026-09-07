@@ -11,7 +11,7 @@ const LETTER_PC = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 // Standard tuning E A D G B e, index 0 = 6th string.
 export const TUNING = [4, 9, 2, 7, 11, 4];
 
-const mod12 = (n) => ((n % 12) + 12) % 12;
+export const mod12 = (n) => ((n % 12) + 12) % 12;
 
 export function parseNote(name) {
   const m = /^([A-G])([#b]?)$/.exec(name || "");
