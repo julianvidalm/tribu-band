@@ -367,8 +367,30 @@ me abandones cariñito`}
  forma:"Intro instrumental → Verso ×2 → Estribillo → Verso → Estribillo → Coda",
  rol:"Venezolana, ritmo <b>orquídea</b> — invento de Hugo Blanco mezclando joropo y música cubana. El verso encadena <b>dos dominantes secundarios</b>: A7 empuja a Dm, G7 empuja a C. Si llevás la melodía, esos dos compases son donde hay que subir el Do a Do# y el Fa a Fa#; el resto es La menor plano.",
  secs:[
-  {n:"Verso",x:"×2",c:"5 compases",cue:"“Cuando la tarde languidece…”",b:"Am | A7  Dm | G7  C | F  E7 | Am",t:"Am/C | A7  Dm | G7  C | F/C  E7 | Am/C",g:"Am7 | A7b9  Dm7 | G13  Cadd9 | Fadd9  E7b9 | Am7",l:""},
-  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Una pena de amor…”",b:"Dm  Am | Dm  Am | F | E7",t:"Dm  Am/C | Dm  Am/C | F/C | E7",g:"Dm7  Am7 | Dm7  Am7 | Fadd9 | E7b9",l:""}
+  {n:"Verso",x:"×2",c:"5 compases",cue:"“Cuando la tarde languidece…”",b:"Am | A7  Dm | G7  C | F  E7 | Am",t:"Am/C | A7  Dm | G7  C | F/C  E7 | Am/C",g:"Am7 | A7b9  Dm7 | G13  Cadd9 | Fadd9  E7b9 | Am7",l:`           Am
+cuando la tarde languidese
+
+renacen las sombras
+
+y en la quietud los cafetales
+              Dm
+vuelven a sentir
+
+echas tristón canción de amor
+               Am
+de la vieja molienda
+            F            E
+que en el letargo de la noche
+          Am
+parecen gemir`},
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Una pena de amor…”",b:"Dm  Am | Dm  Am | F | E7",t:"Dm  Am/C | Dm  Am/C | F/C | E7",g:"Dm7  Am7 | Dm7  Am7 | Fadd9 | E7b9",l:`Dm                        Am
+una pena de  amor,una tristeza
+Dm                             Am
+lleva el sambo manuel, en su amargura
+F
+pasa incansables la noche
+            E
+moliendo café`}
  ]},
 {n:17,t:"Señora Chichera",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
  dud:"No la identifiqué. Suena a saya o caporal boliviano. Pasame el artista.",rol:"",secs:[]},
