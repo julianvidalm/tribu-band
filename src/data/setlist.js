@@ -22,8 +22,26 @@ export const SET=[
  rol:"Dos acordes en todo el tema: <b>Am y G</b>, o sea i–♭VII. <b>No hay sensible</b> — nunca aparece el Sol#, y por eso el tema no resuelve nunca, gira. Eso es lo que le da el carácter andino, no el ritmo.<br><br>Con solo dos acordes, todo el peso está en la melodía y en la dinámica: el coro sube en intensidad sin cambiar la armonía. Si llevás la primera, construí por registro — empezá abajo y subí en cada vuelta.",
  secs:[
   {n:"Intro",x:"×2",c:"2 compases",b:"Am | Am",t:"Am/C | Am/C",g:"Am7 | Am7",l:""},
-  {n:"Verso",x:"×8 frases",c:"2 compases por frase",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:""},
-  {n:"Coro",x:"×2",c:"2 compases",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:""}
+  {n:"Verso",x:"×8 frases",c:"2 compases por frase",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:`Am                       G
+yo soy el hijo del inti sol
+                            Am
+de la pacha mama y del inti sol
+                            G
+yo soy hermano del pueblo coya
+                           Am
+del inca hermano y del aymara
+                           G
+es José Gabriel, José Gabriel
+                            Am
+el condorcanqui y el gran Tupac
+                             G
+es el Tupac Amaru el gran Tupac
+                             Am
+y son mis hermanos cordilleranos`},
+  {n:"Coro",x:"×2",c:"2 compases",b:"G | Am",t:"G/D | Am/C",g:"Gadd9 | Am7",l:`             G
+oohh oohh oohhh
+             Am
+oohh oohh oohhh`}
  ]},
 {n:2,t:"Loca",a:"Chico Trujillo",k:"Dm",bpm:"≈97",st:"Cumbia chilena",v:"ok",zt:"trastes 3–8",za:"trastes 2–7",
  forma:"Intro punteada → Verso → Estribillo → Verso 2 → Estribillo → Solo → Estribillo final",
