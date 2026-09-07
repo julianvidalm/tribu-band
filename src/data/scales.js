@@ -17,6 +17,7 @@ export const ESCALAS={
  11:{t:"menor",r:"A",R:5,n:"En la parte lenta, notas largas y sin vibrato: el yaraví es casi recitado. En la cachua, corcheas parejas. Es el mismo material melódico tocado de dos maneras opuestas."},
  13:{t:"menor",r:"A",R:5,n:"Ojo: la melodía de la primera guitarra ya usa esta escala. Si vas a improvisar, hacelo en los huecos, no encima."},
  16:{t:"menor",r:"A",R:5,n:"El tema se mueve mucho para ser pentatónico. Sobre el <b>A7</b> subí el Do a <b>Do#</b>; sobre el <b>G7</b> apuntá al <b>Si</b>; sobre el <b>E7</b>, al <b>Sol#</b>. Tres notas de fuera, una por dominante."},
+ 24:{t:"menor",r:"Eb",R:11,n:"Dos acordes sin sensible, como El Camaleón: la caja funciona entera. Ojo con el punteo de la intro: usa un <b>Re natural</b> (traste 10 de la 1ª cuerda) que no está en la caja. Es la sensible de Mib menor y es lo que le da el color al riff, así que tocalo aunque quede fuera."},
  23:{t:"mayor",r:"A",R:5,n:"Tema mayor de tres acordes: la pentatónica mayor de La cubre todo sin una nota de fuera. Sobre el <b>E</b> apoyate en Si o en Mi; sobre el <b>D</b>, en Re o en Fa#. Es la caja mayor, no la menor: la raíz está en el traste 5 pero el dibujo arranca un traste antes."},
  19:{t:"menor",r:"D",R:10,n:"Sobre el <b>A7</b> tenés dos notas que valen oro: <b>Do#</b> y <b>Si♭</b>, cada una un traste arriba de una que ya está en la caja. Son la tercera y la novena menor del dominante."}
 };

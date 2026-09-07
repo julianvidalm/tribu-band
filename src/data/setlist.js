@@ -481,8 +481,52 @@ Me decía con su boquita "Vente vamos a bailar"`},
   {n:"Coro",x:"×4",c:"2 compases",cue:"“Rosa María, baila mi cumbia…”",b:"E | A",t:"E/B | A/C#",g:"E9 | Aadd9",l:`E                     A
 Rosa María, baila mi cumbia mamá`}
  ]},
-{n:24,t:"María Teresa",a:"Los 50 de Joselito",k:"?",bpm:"?",st:"Cumbia",v:"dud",zt:"",za:"",forma:"",
- dud:"Grupo identificado, pero no hay transcripción publicada que pueda contrastar. Mandame un link o el tono y la armo.",rol:"",secs:[]},
+{n:24,t:"María Teresa",a:"Los 50 de Joselito",k:"Ebm",bpm:"?",st:"Cumbia",v:"oido",zt:"trastes 4–8",za:"trastes 1–6",
+ forma:"Punteo → Estrofa → Coro “Con el negrito Vicente” → Punteo → Estrofa → Coro → Punteo → Estrofa → Coro",
+ dud:"Acordes y letra según la transcripción de cifraclub. Falta confirmar con la grabación la cantidad de compases por frase y qué armonía va debajo del punteo de la intro (la fuente no lo indica, por eso esa sección no lleva acordes).",
+ rol:"Dos acordes en todo el tema: <b>Ebm y Db</b>, o sea i–♭VII, la misma relación que El Camaleón. <b>El punteo tabulado es tuyo</b> y vuelve al inicio de cada estrofa: vive en la 1ª y 2ª cuerda entre los trastes 4 y 14. Cifraclub lo escribe como D#m y C#; acá va como Ebm y Db, que es la grafía usual de la tonalidad.",
+ secs:[
+  {n:"Punteo",x:"al inicio de cada estrofa",c:"ver tab",b:"",t:"",g:"",l:`E|-11-11-11-11-11-14-11--6-6-------|
+B|-11-11-11-11-11-------7----9-7-6-|
+
+E|-6-6-6-6-6-10-6--4-4---------|
+B|----------------6----7-6-4---|
+
+E|-------------------------11----6-6------|
+B|-12h11-11-11-12h11-11-11---11-7---9-7-6-|
+
+E|-6-6-6-6-6-10-6-6s7-6-4-----------|
+B|------------------------7-6-4-----|
+
+E|--4-4------|
+B|-6----7-6-|
+
+E|---11-11-13-14--|
+B|-11-------------|
+Estos punteos se dan al inicio de cada estrofa.`},
+  {n:"Estrofa",x:"×2 por estrofa",c:"compases por confirmar",cue:"“María Teresa tiene ganas de cumbanchar…”",b:"Ebm | Db | Ebm",t:"Ebm | Db | Ebm",g:"Ebm9 | Dbadd9 | Ebm9",l:` Ebm                             Db
+Maria teresa tiene ganas de cumbanchar
+                                      Ebm
+Cuando suena la orquesta empieza a revolear x2
+
+Ebm                              Db
+Maria teresa baila merengue apambichao
+                                      Ebm
+Tambien baila guaracha guandango y currulao x2
+
+Ebm                                      Db
+Cuando suena el merengue el mambo y el danzon
+                                      Ebm
+Maria se vuelve ausente en medio del salón x2`},
+  {n:"Coro",x:"×4",c:"compases por confirmar",cue:"“Con el negrito Vicente…”",b:"Db | Ebm",t:"Db | Ebm",g:"Dbadd9 | Ebm9",l:`                 Db                   Ebm
+Con el negrito Vicente que la sabe manejar
+                 Db                      Ebm
+Con el compadre clemente ese si la hace sudar
+                 Db                        Ebm
+Con el negrito Mendoza que es ciclón pa guarachar
+                      Db                     Ebm
+Con don Virgilio el pecoso que goloso pa rumbear`}
+ ]},
 {n:25,t:"El Ratón",a:"Cheo Feliciano · Fania",k:"Am",bpm:"≈94",st:"Salsa",v:"ok",zt:"trastes 3–8",za:"trastes 0–6",
  forma:"Intro → Verso largo → Puente → Coro / montuno → Solos → Coro hasta el final",
  rol:"El verso tiene el truco del tema: <b>C7 → B7 → B♭7, tres dominantes bajando cromáticamente</b> antes de volver al Lam. No son acordes de paso, es la armonía. Como primera guitarra podés doblar esa bajada con las terceras y séptimas en vez de rasguear los acordes enteros — así se oye el movimiento.",
