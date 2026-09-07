@@ -460,8 +460,27 @@ Mi negra linda nunca me dejes.`}
  dud:"No la identifiqué, y tampoco estoy seguro de la grafía del título. Pasame el artista.",rol:"",secs:[]},
 {n:22,t:"El Toro Pinto",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
  dud:"No la identifiqué con certeza. Pasame el artista.",rol:"",secs:[]},
-{n:23,t:"Rosa María",a:"—",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
- dud:"Hay varias con ese nombre. Pasame el artista.",rol:"",secs:[]},
+{n:23,t:"Rosa María",a:"Los Moonlights",k:"A",bpm:"?",st:"Cumbia",v:"oido",zt:"trastes 4–7",za:"trastes 2–7",
+ forma:"Intro (vuelta del verso) → Verso → Coro",
+ dud:"Transcripción publicada en lacuerda, pero su autor aclara que la sacó de oído. Falta confirmar con la grabación la cantidad de compases por frase, el tempo y el orden de las repeticiones.",
+ rol:"Tres acordes en La mayor: <b>A, E y D</b>, o sea I–V–IV. El verso hace dos vueltas cortas A–E–A y después dos vueltas D–A–E–A; el coro alterna E y A. Como primera guitarra, la melodía de cumbia va en la pentatónica mayor de La.",
+ secs:[
+  {n:"Intro",x:"×1",c:"vuelta completa del verso, instrumental",b:"A | E | A | A | E | A | D | A | E | A | D | A | E | A",t:"A/C# | E/B | A/C# | A/C# | E/B | A/C# | D | A/C# | E/B | A/C# | D | A/C# | E/B | A/C#",g:"Aadd9 | E9 | Aadd9 | Aadd9 | E9 | Aadd9 | Dadd9 | Aadd9 | E9 | Aadd9 | Dadd9 | Aadd9 | E9 | Aadd9",l:""},
+  {n:"Verso",x:"×1 por verso",c:"14 compases",cue:"“Rosa María se fue a la playa…”",b:"A | E | A | A | E | A | D | A | E | A | D | A | E | A",t:"A/C# | E/B | A/C# | A/C# | E/B | A/C# | D | A/C# | E/B | A/C# | D | A/C# | E/B | A/C#",g:"Aadd9 | E9 | Aadd9 | Aadd9 | E9 | Aadd9 | Dadd9 | Aadd9 | E9 | Aadd9 | Dadd9 | Aadd9 | E9 | Aadd9",l:`A                                          E                 A
+Rosa María se fue a la playa, se fue a la playa, se fue a bañar
+A                                          E                 A
+Rosa María se fue a la playa, se fue a la playa, se fue a bañar
+D                                A
+Y cuando estaba sentadita en la arena
+                  E                       A
+Me decía con su boquita "Vente vamos a bailar"
+D                                A
+Y cuando estaba sentadita en la arena
+                  E                       A
+Me decía con su boquita "Vente vamos a bailar"`},
+  {n:"Coro",x:"×4",c:"2 compases",cue:"“Rosa María, baila mi cumbia…”",b:"E | A",t:"E/B | A/C#",g:"E9 | Aadd9",l:`E                     A
+Rosa María, baila mi cumbia mamá`}
+ ]},
 {n:24,t:"María Teresa",a:"Los 50 de Joselito",k:"?",bpm:"?",st:"Cumbia",v:"dud",zt:"",za:"",forma:"",
  dud:"Grupo identificado, pero no hay transcripción publicada que pueda contrastar. Mandame un link o el tono y la armo.",rol:"",secs:[]},
 {n:25,t:"El Ratón",a:"Cheo Feliciano · Fania",k:"Am",bpm:"≈94",st:"Salsa",v:"ok",zt:"trastes 3–8",za:"trastes 0–6",
