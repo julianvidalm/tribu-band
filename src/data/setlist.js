@@ -190,9 +190,16 @@ veneno para matarme ,veneno para olvidarte`},
  forma:"Intro punteada → Verso → “Ay cariño” → Estribillo → repetir todo",
  rol:"<b>El punteo de este tema es de los más reconocibles de la cumbia peruana y te toca a vos.</b> Vive en la pentatónica de La menor, con el sonido característico de guitarra limpia con delay corto y mucho ataque. Tocá con púa cerca del puente y dejá que la percusión sostenga el groove.",
  secs:[
-  {n:"Intro / Verso",x:"×2",c:"4 compases",b:"Am | C  E7 | Am | Am",t:"Am/C | C  E7 | Am/C | Am/C",g:"Am7 | Cmaj7  E7b9 | Am7 | Am7",l:""},
-  {n:"Puente",x:"×1",c:"4 compases",cue:"“Ay cariño, ay mi vida”",b:"F | C | F | C",t:"F/C | C | F/C | C",g:"Fadd9 | Cadd9 | Fadd9 | Cadd9",l:""},
-  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Nunca pero nunca…”",b:"E7 | Am | C  E7 | Am",t:"E7 | Am/C | C  E7 | Am/C",g:"E7b9 | Am7 | Cmaj7  E7b9 | Am7",l:""}
+  {n:"Intro / Verso",x:"×2",c:"4 compases",b:"Am | C  E7 | Am | Am",t:"Am/C | C  E7 | Am/C | Am/C",g:"Am7 | Cmaj7  E7b9 | Am7 | Am7",l:`Am          C             E            Am
+lloro por quererte, por amarte y por besarte
+ Am          C             E           Am
+sufro por quererte, por amarte y por besarte`},
+  {n:"Puente",x:"×1",c:"4 compases",cue:"“Ay cariño, ay mi vida”",b:"F | C | F | C",t:"F/C | C | F/C | C",g:"Fadd9 | Cadd9 | Fadd9 | Cadd9",l:`F       C     F        C
+ay... cariño ay... mi vida`},
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Nunca pero nunca…”",b:"E7 | Am | C  E7 | Am",t:"E7 | Am/C | C  E7 | Am/C",g:"E7b9 | Am7 | Cmaj7  E7b9 | Am7",l:` E             Am
+nunca... pero nunca
+       C     E   Am
+me abandones cariñito`}
  ]},
 {n:14,t:"La Selva Amazónica",a:"Los Mirlos / versión de Chicha Libre",k:"Gm",bpm:"≈115",st:"Chicha / cumbia amazónica",v:"oido",zt:"trastes 3–8",za:"trastes 3–7",
  forma:"Riff de guitarra → Riff con variación → Estribillo cantado → Riff → Solo de órgano → Riff final",
