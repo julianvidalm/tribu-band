@@ -376,9 +376,20 @@ me abandones cariñito`}
  forma:"Humahuaqueño: Verso ×2 → Estribillo ×2 → Coda → empalme → Reina de Cumbias en bucle",
  rol:"<b>Los dos están en La menor: el empalme es directo, sin modulación.</b> Eso es suerte y hay que aprovecharlo — el corte puede ser en seco, solo cambiando el tempo y el groove. El Humahuaqueño va rápido en 2/4; Reina de Cumbias baja a cumbia rebajada. La melodía del carnavalito es de quena: si la hacés en requinto, notas cortas y separadas, nada de ligados.",
  secs:[
-  {n:"Humahuaqueño · verso",x:"×2",c:"4 compases",cue:"“Llegando está el carnaval…”",b:"Am  F | G7  C | Am  F | G7  C",t:"Am/C  F/C | G7  C | Am/C  F/C | G7  C",g:"Am7  Fadd9 | G13  Cadd9 | Am7  Fadd9 | G13  Cadd9",l:""},
-  {n:"Humahuaqueño · estribillo",x:"×2",c:"4 compases",cue:"“Fiesta de la quebrada…”",b:"Am  C | E7  Am | C  Am | E7  Am",t:"Am/C  C | E7  Am/C | C  Am/C | E7  Am/C",g:"Am7  Cadd9 | E7b9  Am7 | Cadd9  Am7 | E7b9  Am7",l:""},
-  {n:"Humahuaqueño · coda",x:"×2",c:"2 compases",cue:"“Quebradeño, humahuaqueñito”",b:"F  G7 | C",t:"F/C  G7 | C",g:"Fadd9  G13 | Cadd9",l:""},
+  {n:"Humahuaqueño · verso",x:"×2",c:"4 compases",cue:"“Llegando está el carnaval…”",b:"Am  F | G7  C | Am  F | G7  C",t:"Am/C  F/C | G7  C | Am/C  F/C | G7  C",g:"Am7  Fadd9 | G13  Cadd9 | Am7  Fadd9 | G13  Cadd9",l:`   Am                F
+Llegando esta el carnaval
+      G7         C
+quebradeño mi cholitay`},
+  {n:"Humahuaqueño · estribillo",x:"×2",c:"4 compases",cue:"“Fiesta de la quebrada…”",b:"Am  C | E7  Am | C  Am | E7  Am",t:"Am/C  C | E7  Am/C | C  Am/C | E7  Am/C",g:"Am7  Cadd9 | E7b9  Am7 | Cadd9  Am7 | E7b9  Am7",l:`Am               C
+Fiesta de la quebrada
+       E7            Am
+humahuaqueña para cantar
+        C       Am
+erke charango y bombo
+       E7           Am
+carnavalito para bailar`},
+  {n:"Humahuaqueño · coda",x:"×2",c:"2 compases",cue:"“Quebradeño, humahuaqueñito”",b:"F  G7 | C",t:"F/C  G7 | C",g:"Fadd9  G13 | Cadd9",l:`F           G7          C
+Quebradeño Humahuaqueñito`},
   {n:"Reina de Cumbias",x:"en bucle",c:"2 compases",b:"Am | E7",t:"Am/C | E7",g:"Am7 | E7b9",l:""}
  ]},
 {n:19,t:"La Negra Tomasa",a:"Guillermo Rodríguez Fiffe",k:"Dm",bpm:"≈88",st:"Guaracha",v:"oido",zt:"trastes 3–7",za:"trastes 5–7",
