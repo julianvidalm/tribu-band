@@ -461,9 +461,31 @@ Que me come poquito a poco.`}
  forma:"Intro → Verso largo → Puente → Coro / montuno → Solos → Coro hasta el final",
  rol:"El verso tiene el truco del tema: <b>C7 → B7 → B♭7, tres dominantes bajando cromáticamente</b> antes de volver al Lam. No son acordes de paso, es la armonía. Como primera guitarra podés doblar esa bajada con las terceras y séptimas en vez de rasguear los acordes enteros — así se oye el movimiento.",
  secs:[
-  {n:"Verso",x:"×8 frases",c:"2 compases",cue:"“Mi gato se está quejando…”",b:"Am  C7 | B7  Bb7",t:"Am/C  C7 | B7  Bb7",g:"Am7  C9 | B7  Bb7",l:""},
+  {n:"Verso",x:"×8 frases",c:"2 compases",cue:"“Mi gato se está quejando…”",b:"Am  C7 | B7  Bb7",t:"Am/C  C7 | B7  Bb7",g:"Am7  C9 | B7  Bb7",l:`Mi gato se está quejando 
+porque no puede vacilar
+si donde quiera que se mete
+su gata lo va a buscar
+de noche brinca la berja 
+que esta detras de mi casa
+a ver si puede fugarse
+sin que ella lo pueda ver
+y no tan pronto, no tan pronto está de fiesta
+silvestre felino tiene que echar a correr
+esto si serio mi amigo
+oye que lio, que lio se va a formar
+cuando mi gatito sepa
+y es tan simple la razón
+que el que a su gata le cuenta
+que el que a su gata le cuenta
+no es nada más que un raton, un ratón`},
   {n:"Puente",x:"×1",c:"4 compases",b:"Am | F | Em | E7",t:"Am/C | F/C | Em/B | E7",g:"Am7 | Fadd9 | Em7 | E7b9",l:""},
-  {n:"Coro / montuno",x:"muchas veces",c:"4 compases",cue:"“De cualquier maya sale un ratón…”",b:"Am | Dm | E7 | Am",t:"Am/C | Dm | E7 | Am/C",g:"Am7 | Dm7 | E7b9 | Am7",l:""}
+  {n:"Coro / montuno",x:"muchas veces",c:"4 compases",cue:"“De cualquier maya sale un ratón…”",b:"Am | Dm | E7 | Am",t:"Am/C | Dm | E7 | Am/C",g:"Am7 | Dm7 | E7b9 | Am7",l:`Am          C/G     Bm7b5     E7  
+De cualquier maya sale un ratón oye (bis)
+
+Am            C/G        
+Echale semilla a la maraca pa´que suene
+Bm7b5             E7    
+Cha cu cha currucucha cu cha (4 veces)`}
  ]},
 {n:26,t:"El Camaleón",a:"Widinson",k:"Cm",bpm:"≈115",st:"Tecnocumbia ecuatoriana",v:"oido",zt:"trastes 6–8",za:"trastes 1–5",
  forma:"Intro de teclado → Verso → Estribillo → Verso → Estribillo → Solo → Estribillo",
