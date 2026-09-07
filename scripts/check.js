@@ -9,6 +9,7 @@ import { SET } from "../src/data/setlist.js";
 import { splitBars } from "../src/lib/bars.js";
 import { libFor } from "../src/lib/diagram.js";
 import { checkShape, keyScale, outOfKey } from "../src/lib/theory.js";
+import { transposeKey, keySpelling, transposeSymbol, resolveShape } from "../src/lib/transpose.js";
 
 const MODES = [
   { key: "b", label: "Basico", lib: SHAPES },
@@ -144,6 +145,50 @@ section("5. Verification status");
   for (const [v, list] of Object.entries(groups)) {
     info(v.padEnd(5) + list.length + "  " + list.join(" · "));
   }
+}
+
+/* 6. Transpositions */
+section("6. Every chord at all 12 transpositions (blocking)");
+{
+  const stats = { exact: 0, basic: 0, shifted: 0 };
+  let checked = 0, failed = 0;
+  const cache = new Map(); // "mode symbol n" -> result, chords repeat a lot across songs
+  for (const s of SET) {
+    if (!s.secs.length) continue;
+    for (let n = -5; n <= 6; n++) {
+      if (n === 0) continue;
+      const spelling = keySpelling(transposeKey(s.k, n));
+      for (const x of s.secs) {
+        for (const m of MODES) {
+          for (const bar of splitBars(x[m.key])) {
+            for (const symbol of bar) {
+              checked++;
+              let transposed;
+              try { transposed = transposeSymbol(symbol, n, spelling); } catch (e) {
+                failed++;
+                problem(song(s) + "  " + m.label + "  " + (n > 0 ? "+" : "") + n + "  " + symbol + "  " + e.message);
+                continue;
+              }
+              const key = m.key + " " + transposed;
+              let r = cache.get(key);
+              if (r === undefined) {
+                try { r = resolveShape(transposed, MODE_OF_FIELD[m.key]); } catch (e) { r = null; }
+                cache.set(key, r);
+              }
+              if (!r) {
+                failed++;
+                problem(song(s) + "  " + m.label + "  " + (n > 0 ? "+" : "") + n + "  " + symbol + " -> " + transposed + "  (no shape)");
+                continue;
+              }
+              stats[r.source]++;
+            }
+          }
+        }
+      }
+    }
+  }
+  info(checked + " (song, n, chord) combinations checked, " + failed + " without a shape");
+  info("resolved by exact library entry: " + stats.exact + " · basic fallback: " + stats.basic + " · shifted shape: " + stats.shifted);
 }
 
 console.log("\ncheck: " + blocking + " blocking problem" + (blocking === 1 ? "" : "s"));
