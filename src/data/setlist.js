@@ -131,9 +131,9 @@ las cositas de mi amor. x2`}
   {n:"Verso",x:"×2",c:"4 compases",b:"Em | Bm | Em | Bm",t:"Em/B | Bm | Em/B | Bm",g:"Em9 | Bm7 | Em9 | Bm7",l:""},
   {n:"Parte mayor",x:"×2",c:"4 compases",b:"C | D | G | Em",t:"C | D | G/D | Em/B",g:"Cadd9 | Dadd9 | Gadd9 | Em9",l:""}
  ]},
-{n:6,t:"Ojos Azules",a:"Gilberto Rojas · 1947",k:"Am",bpm:"≈120",st:"Taquirari / huayno",v:"oido",zt:"trastes 1–5",za:"trastes 0–5",
+{n:6,t:"Ojos Azules",a:"Gilberto Rojas · 1947",k:"Am",bpm:"≈120",st:"Taquirari / huayno",v:"ok",zt:"trastes 1–5",za:"trastes 0–5",
  forma:"Intro instrumental → Estrofa ×3 (la última repite la primera) → Coda acelerada",
- rol:"El tono La menor está confirmado, la estructura la reconstruí de oído. Dato: <b>es boliviana y originalmente un taquirari</b>, no un huayno peruano. La melodía principal es de quena y cae casi entera en la pentatónica de La menor: si la doblás en requinto, notas separadas y sin vibrato.",
+ rol:"Tono y estructura verificados con la guitarra contra la transcripción de Inti-Illimani; solo la intro y la coda siguen siendo de oído. Dato: <b>es boliviana y originalmente un taquirari</b>, no un huayno peruano. La melodía principal es de quena y cae casi entera en la pentatónica de La menor: si la doblás en requinto, notas separadas y sin vibrato.",
  secs:[
   {n:"Estrofa",x:"×3, la última repite la primera",c:"8 compases · cada pareado ×2",cue:"“Ojos azules no llores…”",b:"Am | C | E7 | Am | G7 | C | E7 | Am",t:"Am/C | C | E7 | Am/C | G7 | C | E7 | Am/C",g:"Am7 | Cadd9 | E7b9 | Am7 | G13 | Cadd9 | E7b9 | Am7",l:`Am                C
 Ojos azules no llores,
