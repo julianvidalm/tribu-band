@@ -418,8 +418,34 @@ Quebradeño Humahuaqueñito`},
  forma:"Intro → Verso ×2 → Coro “ay ay ay” → Verso → Coro hasta el final",
  rol:"Guaracha cubana de 1938, popularizada en rock por Caifanes. Dos acordes todo el tema, así que el interés está en el fraseo. Sobre el <b>A7</b> tenés Do# y Si♭ disponibles: esas dos notas son la diferencia entre sonar a salsa y sonar a rock en menor.",
  secs:[
-  {n:"Verso",x:"×4",c:"4 compases",b:"Dm | A7 | Dm | A7",t:"Dm | A7 | Dm | A7",g:"Dm7 | A7b9 | Dm7 | A7b9",l:""},
-  {n:"Coro “ay ay ay”",x:"×2",c:"4 compases",b:"Dm | Bb | A7 | Dm",t:"Dm | Bb/D | A7 | Dm",g:"Dm7 | Bbmaj7 | A7b9 | Dm7",l:""}
+  {n:"Verso",x:"×4",c:"4 compases",b:"Dm | A7 | Dm | A7",t:"Dm | A7 | Dm | A7",g:"Dm7 | A7b9 | Dm7 | A7b9",l:`   Dm                               A
+Estoy tan enamorado de la negra Tomasa,
+                                    Dm
+Que cuando se va de casa, triste me pongo.
+                                   A
+Estoy tan enamorado de la negra Tomasa,
+                             Dm
+Que cuando se va de casa, triste me pongo.
+
+ Dm                                A
+Estoy tan enamorado de mi negra preciosa
+                                    Dm
+Que cuando se va de casa triste me pongo.
+                                   A
+Estoy tan enamorado de mi negra preciosa
+                                   Dm
+Que cuando se va de casa triste me pongo.`},
+  {n:"Coro “ay ay ay”",x:"×2",c:"4 compases",b:"Dm | Bb | A7 | Dm",t:"Dm | Bb/D | A7 | Dm",g:"Dm7 | Bbmaj7 | A7b9 | Dm7",l:` C   A#  A
+Ay! Ay! Ay!
+
+             A                    Dm
+Esa negra linda que me tiene loco,
+         A            Dm
+Que me come poquito a poco.
+            A                     Dm
+Esa negra linda que me tiene loco,
+         A            Dm
+Que me come poquito a poco.`}
  ]},
 {n:20,t:"Baila Negra",a:"Sajama",k:"?",bpm:"?",st:"?",v:"dud",zt:"",za:"",forma:"",
  dud:"Grupo identificado, pero no encontré transcripción publicada ni análisis del audio. No te la voy a inventar. Mandame un link de YouTube o decime el tono y los acordes que usan y la armo con todo lo demás.",rol:"",secs:[]},
