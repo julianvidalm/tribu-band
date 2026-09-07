@@ -135,7 +135,23 @@ las cositas de mi amor. x2`}
  forma:"Intro instrumental → Verso ×2 → Estribillo → Verso → Estribillo → Coda acelerada",
  rol:"El tono La menor está confirmado, la estructura la reconstruí de oído. Dato: <b>es boliviana y originalmente un taquirari</b>, no un huayno peruano. La melodía principal es de quena y cae casi entera en la pentatónica de La menor: si la doblás en requinto, notas separadas y sin vibrato.",
  secs:[
-  {n:"Verso",x:"×2",c:"4 compases",b:"Am | G | C | E7",t:"Am/C | G/D | C | E7",g:"Am7 | Gadd9 | Cadd9 | E7b9",l:""},
+  {n:"Verso",x:"×2",c:"4 compases",b:"Am | G | C | E7",t:"Am/C | G/D | C | E7",g:"Am7 | Gadd9 | Cadd9 | E7b9",l:`Am       C         Am       C      E7      Am
+ojos azules no llores no llores ni te enamores
+
+  F           C  F  G C  F   G  E7             Am
+lloraras cuando me vaya cuando remedio ya no haya
+
+Am          C       Am       C    E7    Am
+tu me juraste quererme quererme toda la vida
+
+F           C  F  G C     F  G  E7            Am
+no pasaron dos tres dias tu te alejas y me dejas
+
+Am        C      Am       C    E7      Am
+en una copa de vino quisiera tomar veneno
+
+ F        C  F G  C   F G E7            Am
+veneno para matarme ,veneno para olvidarte`},
   {n:"Estribillo",x:"×2",c:"4 compases",b:"Am | E7 | Am | Am",t:"Am/C | E7 | Am/C | Am/C",g:"Am7 | E7b9 | Am7 | Am7",l:""}
  ]},
 {n:7,t:"Gimme the Power",a:"Molotov",k:"Am",bpm:"≈100",st:"Rap rock",v:"ok",zt:"trastes 3–8",za:"trastes 0–5",
