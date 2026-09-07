@@ -288,9 +288,48 @@ donde yace dormitando la piragua.`}
  forma:"Intro → Verso ×2 → Puente → Coro ×2 → Solo → Puente → Coro ×2",
  rol:"Cuatro acordes que no cambian nunca, <b>ni siquiera en el solo</b>. Eso te deja todo el espacio: el solo del disco vive en la pentatónica de Mi menor entre el traste 12 y el nut. El B7 del cuarto compás es el único punto donde la armonía empuja — apoyate ahí para cerrar las frases.",
  secs:[
-  {n:"Verso",x:"×2",c:"4 compases",cue:"“Me quieren agitar…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""},
+  {n:"Verso",x:"×2",c:"4 compases",cue:"“Me quieren agitar…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:`     Em
+Me quieren agitar
+me incitan a gritar
+ Bm7
+soy como una roca
+palabras no me tocan
+  Am7
+adentro hay un volcan
+que pronto va a estallar
+Em                   B7
+yo quiero estar tranquilo
+
+Em
+Es mi situacion
+una desolacion
+Bm7
+soy como un lamento
+lamento boliviano
+        Am7
+que un dia empezo
+y no va a terminar
+Em            B7
+ya nadie hace dan~o`},
   {n:"Puente",x:"×1",c:"4 compases",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""},
-  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Y yo estoy aquí…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:""}
+  {n:"Estribillo",x:"×2",c:"4 compases",cue:"“Y yo estoy aquí…”",b:"Em | Bm | Am | Em  B7",t:"Em/B | Bm | Am/C | Em/B  B",g:"Em9 | Bm7 | Am7 | Em9  B7b9",l:`           Em
+Y hoy estoy aqui
+           Bm7
+borracho y loco
+   A#m7 Am7
+y mi corazon idiota
+               Em               B7
+siempre brillara (siempre brillara)
+          Em
+Y yo te amare
+             Bm7
+te amare por siempre
+     A#m7  Am7
+nena no te peines en la cama
+          Em
+que los viajantes
+           B7
+se van a atrasar`}
  ]},
 {n:11,t:"El Cóndor Pasa",a:"Daniel Alomía Robles · 1913",k:"Am",bpm:"lento → ≈130",st:"Yaraví + cachua",v:"oido",zt:"trastes 3–8",za:"trastes 0–5",
  forma:"Yaraví (lento, libre) → Cachua (rápido) → Cachua hasta el final",
