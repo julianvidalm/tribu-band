@@ -34,7 +34,6 @@ const MODULES = [
   "data/setlist.js",
   "data/scales.js",
   "data/transposiciones.json",
-  "lib/notation.js",
   "lib/bars.js",
   "lib/theory.js",
   "lib/diagram.js",

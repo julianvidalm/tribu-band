@@ -1,5 +1,4 @@
 import { ESCALAS } from "../data/scales.js";
-import { LAT } from "./notation.js";
 import { transposeScale } from "./transpose.js";
 
 /* ============ ESCALA PENTATÓNICA ============ */
@@ -46,13 +45,13 @@ export function escalaSVG(R,tipo,raiz){
   return s+'</svg>';
 }
 
-// notac: "en" | "es" · tr: semitones of transposition (0 = original)
-export function escalaHTML(n, notac, tr){
+// tr: semitones of transposition (0 = original)
+export function escalaHTML(n, tr){
   const e0=ESCALAS[n]; if(!e0) return "";
   const e=tr?transposeScale(e0,tr):e0;
-  const nombre=(notac==="es"?(LAT[e.r]||e.r):e.r)+" "+(e.t==="menor"?"menor pentatónica":"mayor pentatónica");
+  const nombre=e.r+" "+(e.t==="menor"?"menor pentatónica":"mayor pentatónica");
   return '<div class="escBlk"><div class="h">Para improvisar</div>'
     +'<div class="t">'+nombre+' · traste '+(e.t==="menor"?e.R:e.R-1)+'</div>'
-    +escalaSVG(e.R,e.t,(notac==="es"?(LAT[e.r]||e.r):e.r))
+    +escalaSVG(e.R,e.t,e.r)
     +'<div class="n"><b style="color:var(--turquesa)">●</b> raíz · desde esta caja te movés por CAGED a las otras cuatro posiciones.<br><br>'+e.n+'</div></div>';
 }

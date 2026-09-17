@@ -20,15 +20,34 @@
   </div>
   <button class="btn on" id="bLetra">Letra</button>
   <div class="grupo">
-    <button class="btn on" id="nEn">C D E</button>
-    <button class="btn" id="nEs">DO RE MI</button>
-  </div>
-  <div class="grupo">
     <button class="btn" id="tMin">A−</button>
     <button class="btn" id="tMas">A+</button>
   </div>
   <button class="btn rojo" id="wake">Pantalla</button>
+  <button class="btn ayuda" id="ayuda" aria-label="Ayuda" aria-expanded="false">?</button>
 </div>
+
+<section class="hoja oculto" id="hoja" aria-label="Ayuda">
+  <div class="cab"><h2>Cómo se lee esto</h2><button class="btn cerrar" id="hojaCerrar">Cerrar</button></div>
+  <div class="cols">
+    <div>
+      <div class="sec"><span class="h">Los tres modos</span>Son para cuando <b>acompañás</b>. Cuando llevás la melodía, lo que importa es el bloque de escala al final de cada tema y la nota sobre qué hace el requinto ahí.
+        <div class="modo"><span class="tag">Básico</span><span>Acordes abiertos en primera posición.</span></div>
+        <div class="modo"><span class="tag">Tríadas</span><span>Tres notas sobre las cuerdas 3ª, 2ª y 1ª. El skank de ska y reggae: agudo, seco, deja libre todo el registro del bajo.</span></div>
+        <div class="modo"><span class="tag">Avanzado</span><span>Séptimas, novenas y trecenas en cajas de cuatro cuerdas, elegidas según el género de cada tema.</span></div>
+        <p>Los dos últimos indican la zona del mástil donde vive el tema. La armonía es la misma en los tres: cambia cuántas notas tocás y cuáles.</p></div>
+      <div class="sec"><span class="h">Diagramas</span>Barra blanca gruesa arriba = cejuela. Número turquesa a la izquierda = traste donde arranca la caja. <span class="tq">○</span> cuerda al aire · <span class="mute">×</span> cuerda que no suena. Las × no son opcionales: en las tríadas suenan solo tres cuerdas. Si dejás sonar las graves, pisás al bajo y se pierde el motivo de tocarlas arriba.</div>
+      <div class="sec"><span class="h">Acorde equivalente</span><b>El nombre turquesa</b> al lado de cada acorde es el <b>acorde básico equivalente</b>. Si en medio del tema no te sale una posición, tocá ese y no se cae nada: la función armónica es la misma, solo pierde el color.</div>
+    </div>
+    <div>
+      <div class="sec"><span class="h">Nombres con barra</span><code>F/C</code> es Fa con Do como nota más grave: la misma tríada con las notas en otro orden. Aparecen mucho en modo Tríadas porque son justamente lo que permite encadenar acordes sin mover la mano.</div>
+      <div class="sec"><span class="h">Modo avanzado</span>Muchos de esos acordes van <b>sin fundamental</b> — el <code>A7</code> avanzado no toca ningún La. No es un error: la fundamental la pone el bajo, y vos aportás las notas que definen el color (tercera, séptima, novena).</div>
+      <div class="sec"><span class="h">Transportar</span>Tocá la etiqueta del tono dentro de un tema y elegí en qué tono tocarlo. Cambian los acordes, los diagramas, la escala y las líneas de acordes de la letra; no es una cejilla.</div>
+      <div class="sec"><span class="h">Letra</span>El archivo trae un hueco de letra en cada sección, vacío. Abrí el .html con cualquier editor de texto, buscá el campo <code>l:</code> de la sección y pegá entre los acentos graves el bloque copiado de un sitio de acordes, sin tocar los espacios. El archivo separa solo las líneas de acordes de las de letra.</div>
+      <div class="sec"><span class="h">Estado de cada tema</span><span class="tq">● verificado</span> = contrastado con transcripciones publicadas · <span class="am">● por oído</span> = reconstruido, revisar con la banda · <span class="rj">● sin identificar</span> = falta confirmar artista y versión.</div>
+    </div>
+  </div>
+</section>
 
 <div class="shell">
   <main id="main"></main>

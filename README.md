@@ -17,9 +17,10 @@ sin build en tiempo de ejecución y sin dependencias externas.
      Tríadas y Avanzado, el nombre turquesa al lado de cada acorde es el
      acorde básico equivalente para hacer el switch en vivo.
    - **Letra**: muestra u oculta los bloques de letra.
-   - **C D E / DO RE MI**: notación americana o latina.
    - **A− / A+**: tamaño de fuente.
    - **Pantalla**: Wake Lock para que no se apague la pantalla.
+   - **?**: abre una hoja de ayuda con cómo leer los modos, los diagramas, la
+     transposición y el estado de verificación de cada tema.
 4. En pantallas de 800 px o más, la vista se parte en dos columnas: contenido
    del tema a la izquierda y panel fijo de diagramas y escala a la derecha.
 5. **Transportar un tema**: dentro del tema, tocá la etiqueta turquesa del tono
@@ -81,7 +82,7 @@ src/
   data/chords.js        SHAPES, SHAPES_ALT, SHAPES_ADV: digitaciones por modo
   data/scales.js        ESCALAS: caja pentatónica y nota de uso por tema
   data/transposiciones.json  transposición acordada por tema, en semitonos
-  lib/notation.js       traducción americana ↔ latina
+  data/show.json        orden de temas del próximo show (npm run build:show)
   lib/bars.js           partición de una cadena de acordes en compases
   lib/diagram.js        diagramas SVG de acordes y cálculo del traste base
   lib/scale.js          diagrama SVG de la pentatónica

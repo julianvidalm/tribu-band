@@ -1,5 +1,4 @@
 import { SET } from "../data/setlist.js";
-import { trad } from "../lib/notation.js";
 import { splitBars } from "../lib/bars.js";
 import { diagramaShape } from "../lib/diagram.js";
 import { escalaHTML } from "../lib/scale.js";
@@ -11,7 +10,18 @@ import {
 } from "../lib/transpose.js";
 
 /* ============ ESTADO ============ */
-let modo="b", notac="en", esc=1, vista="indice", actual=null, verLetra=true, picker=false;
+let modo="b", esc=1, vista="indice", actual=null, verLetra=true, picker=false;
+
+/* ============ SHOW ============ */
+// The build can inline src/data/show.json as SHOW: an ordered subset of SET
+// for one specific show. The position (01..N) is display only; s.n stays the
+// stable id used by scales, navigation and saved transpositions.
+const SHOW_DEF=(typeof SHOW!=="undefined"&&SHOW&&Array.isArray(SHOW.order))?SHOW:null;
+const LISTA=SHOW_DEF
+  ? SHOW_DEF.order.map(function(n){ return SET.find(function(s){ return s.n===n; }); }).filter(Boolean)
+  : SET.slice();
+function posDe(n){ return LISTA.findIndex(function(s){ return s.n===n; })+1; }
+function num(n){ return String(posDe(n)).padStart(2,"0"); }
 
 /* ============ TRANSPOSICIÓN ============ */
 // The build inlines src/data/transposiciones.json as TRANSPOSICIONES: the
@@ -53,8 +63,8 @@ function barra(x, ctx){
     const b=bas[ci]||[];
     return a.map(function(ac,i){
       const t=sym(ac,ctx), tb=b[i]?sym(b[i],ctx):"";
-      const eq=(modo!=="b"&&tb&&tb!==t)?'<span class="eq">'+trad(tb, notac)+'</span>':'';
-      return '<span class="c'+(i>0?" sec2":"")+'">'+trad(t, notac)+eq+'</span>';
+      const eq=(modo!=="b"&&tb&&tb!==t)?'<span class="eq">'+tb+'</span>':'';
+      return '<span class="c'+(i>0?" sec2":"")+'">'+t+eq+'</span>';
     }).join(" ");
   }).join('<span class="p">|</span>​');
 }
@@ -86,34 +96,22 @@ function diagramaDe(nombre){
 /* ============ VISTAS ============ */
 function vistaIndice(){
   vista="indice"; actual=null; picker=false;
+  cerrarHoja();
   document.getElementById("volver").classList.add("oculto");
   document.getElementById("marca").innerHTML='LA <span>TRIBU</span>';
   document.getElementById("main").innerHTML=
-    '<div class="hero"><h1>26 temas.<br>Primera guitarra y requinto.</h1>'
-    +'<p>26 temas · primera guitarra y requinto. Tocá uno para abrirlo solo.<br><br>'+'Los tres modos son para cuando <b>acompañás</b>. Cuando llevás la melodía, lo que importa es el bloque de escala al final de cada tema y la nota sobre qué hace el requinto ahí.<br>'
-    +'<b>Básico</b> — acordes abiertos en primera posición.<br>'
-    +'<b>Tríadas</b> — tres notas sobre las cuerdas 3ª, 2ª y 1ª. El skank de ska y reggae: agudo, seco, deja libre todo el registro del bajo.<br>'
-    +'<b>Avanzado</b> — séptimas, novenas y trecenas en cajas de cuatro cuerdas, elegidas según el género de cada tema.<br><br>'
-    +'Los dos últimos indican la zona del mástil donde vive el tema. La armonía es la misma en los tres: cambia cuántas notas tocás y cuáles.</p></div>'
-    +'<div class="indice">'+SET.map(function(s){
+    '<div class="hero"><h1>'+(SHOW_DEF?SHOW_DEF.name+'.<br>'+LISTA.length+' temas, en orden.':LISTA.length+' temas.<br>Primera guitarra y requinto.')+'</h1>'
+    +'<p>Primera guitarra y requinto. Tocá un tema para abrirlo.</p></div>'
+    +'<div class="indice">'+LISTA.map(function(s){
       const ctx=trCtx(s);
-      const kk=s.k==="?"?"?":trad(ctx.k.split(" ")[0], notac)+(ctx.tr?'<small>orig. '+trad(s.k.split(" ")[0], notac)+'</small>':'');
+      const kk=s.k==="?"?"?":ctx.k.split(" ")[0]+(ctx.tr?'<small>orig. '+s.k.split(" ")[0]+'</small>':'');
       return '<div class="item '+(s.v==="dud"?"dud":"")+'" data-n="'+s.n+'">'
-        +'<span class="num">'+String(s.n).padStart(2,"0")+'</span>'
+        +'<span class="num">'+num(s.n)+'</span>'
         +'<span><span class="tt">'+s.t+'</span><span class="aa">'+s.a+'</span></span>'
-        +'<span class="kk">'+kk+'</span></div>';
+        +'<span class="kk">'+kk+'</span>'
+        +'<span class="v '+s.v+'"></span></div>';
     }).join("")+'</div>'
-    +'<footer><b>Cómo agregar la letra.</b> El archivo trae un hueco de letra en cada sección, vacío. '
-    +'Abrí el .html con cualquier editor de texto, buscá el campo <code>l:</code> de la sección y pegá '
-    +'entre los acentos graves el bloque copiado de un sitio de acordes, sin tocar los espacios. '
-    +'El archivo separa solo las líneas de acordes de las de letra.<br><br>'
-    +'<b>Diagramas.</b> Barra blanca gruesa arriba = cejuela. Número turquesa a la izquierda = traste donde arranca la caja. '
-    +'<span style="color:var(--turquesa)">○</span> cuerda al aire · <span style="color:#6B5049">×</span> cuerda que no suena. '
-    +'Las × no son opcionales: en las tríadas suenan solo tres cuerdas. Si dejás sonar las graves, pisás al bajo y se pierde el motivo de tocarlas arriba.<br><br>'+'<b>El nombre turquesa</b> al lado de cada acorde es el <b>acorde básico equivalente</b>. Si en medio del tema no te sale una posición, tocá ese y no se cae nada: la función armónica es la misma, solo pierde el color.<br><br>'+'<b>Nombres con barra.</b> <code>F/C</code> es Fa con Do como nota más grave: la misma tríada con las notas en otro orden. Aparecen mucho en modo Tríadas porque son justamente lo que permite encadenar acordes sin mover la mano.<br><br>'+'<b>Modo Avanzado.</b> Muchos de esos acordes van <b>sin fundamental</b> — el <code>A7</code> avanzado no toca ningún La. No es un error: la fundamental la pone el bajo, y vos aportás las notas que definen el color (tercera, séptima, novena).<br><br>'
-    +'<b>Transportar.</b> Tocá la etiqueta del tono dentro de un tema y elegí en qué tono tocarlo. Cambian los acordes, los diagramas, la escala y las líneas de acordes de la letra; no es una cejilla.<br><br>'
-    +'<span style="color:var(--turquesa)">verificado</span> = contrastado con transcripciones publicadas · '
-    +'<span style="color:var(--amarillo)">por oído</span> = reconstruido, revisar con la banda · '
-    +'<span style="color:var(--rojo)">sin identificar</span> = falta confirmar artista y versión.</footer>';
+    +'<footer class="leyenda"><span><i class="v ok"></i>verificado</span><span><i class="v oido"></i>por oído</span><span><i class="v dud"></i>sin identificar</span><span class="mas">Todo lo demás está en <b>?</b></span></footer>';
 
   document.querySelectorAll(".item").forEach(function(el){
     el.addEventListener("click",function(){ vistaCancion(+el.dataset.n); });
@@ -133,11 +131,11 @@ function pickerHTML(s, ctx){
   let g='';
   for(let pc=0;pc<12;pc++){
     const cls="btn"+(pc===sel?" on":"")+(pc===orig?" orig":"");
-    g+='<button class="'+cls+'" data-pc="'+pc+'">'+trad(keyName(pc,mode), notac)+'</button>';
+    g+='<button class="'+cls+'" data-pc="'+pc+'">'+keyName(pc,mode)+'</button>';
   }
   const foot=ctx.tr
-    ? '<span>'+trad(keyName(sel,mode), notac)+' = '+(ctx.tr>0?"+":"")+ctx.tr+' semitonos</span>'
-      +'<button class="btn" data-reset="1">Volver a '+trad(tok, notac)+'</button>'
+    ? '<span>'+keyName(sel,mode)+' = '+(ctx.tr>0?"+":"")+ctx.tr+' semitonos</span>'
+      +'<button class="btn" data-reset="1">Volver a '+tok+'</button>'
     : '<span>tono original</span>';
   return '<div class="picker"><div class="h">Tocar en</div><div class="grid">'+g+'</div><div class="foot">'+foot+'</div></div>';
 }
@@ -145,10 +143,11 @@ function pickerHTML(s, ctx){
 function vistaCancion(n, keepScroll){
   if(actual!==n) picker=false;
   vista="song"; actual=n;
+  cerrarHoja();
   const s=SET.find(function(x){return x.n===n;});
   const ctx=trCtx(s);
   document.getElementById("volver").classList.remove("oculto");
-  document.getElementById("marca").innerHTML=String(s.n).padStart(2,"0")+' · '+s.t;
+  document.getElementById("marca").innerHTML=num(s.n)+' · '+s.t;
 
   const vtag=s.v==="ok"?'<span class="tag ok">verificado</span>'
            :s.v==="oido"?'<span class="tag oido">por oído</span>'
@@ -167,15 +166,16 @@ function vistaCancion(n, keepScroll){
       +cuerpo+'</div>';
   }).join("");
 
-  const prev=SET.find(function(x){return x.n===n-1;});
-  const next=SET.find(function(x){return x.n===n+1;});
+  const pos=posDe(n);
+  const prev=pos>1?LISTA[pos-2]:null;
+  const next=pos<LISTA.length?LISTA[pos]:null;
   const pickable=s.k!=="?";
   const tonoTag=pickable
-    ? '<span class="tag tono pick" id="tono">'+trad(ctx.k.split(" ")[0], notac)+(ctx.tr?' <small>'+(ctx.tr>0?"+":"")+ctx.tr+'</small>':'')+' ▾</span>'
+    ? '<span class="tag tono pick" id="tono">'+ctx.k.split(" ")[0]+(ctx.tr?' <small>'+(ctx.tr>0?"+":"")+ctx.tr+'</small>':'')+' ▾</span>'
     : "";
 
   document.getElementById("main").innerHTML='<section class="song">'
-    +'<div class="cab"><span class="num">'+String(s.n).padStart(2,"0")+'</span>'
+    +'<div class="cab"><span class="num">'+num(s.n)+'</span>'
     +'<h2>'+s.t+'<span class="art">'+s.a+'</span></h2></div>'
     +'<div class="meta">'
     +tonoTag
@@ -188,10 +188,10 @@ function vistaCancion(n, keepScroll){
     +(s.dud?'<div class="aviso"><b>Falta confirmar</b>'+s.dud+'</div>':"")
     +(s.rol?'<div class="rol">'+s.rol+'</div>':"")
     +'<div class="secs">'+secs+'</div>'
-    +'<div id="escSong">'+escalaHTML(s.n, notac, ctx.tr)+'</div>'
+    +'<div id="escSong">'+escalaHTML(s.n, ctx.tr)+'</div>'
     +'<div class="nav">'
-    +(prev?'<a data-go="'+prev.n+'">← '+String(prev.n).padStart(2,"0")+'<small>'+prev.t+'</small></a>':'<a data-go="0">← Índice<small>volver a la lista</small></a>')
-    +(next?'<a class="sig" data-go="'+next.n+'">'+String(next.n).padStart(2,"0")+' →<small>'+next.t+'</small></a>':'<a class="sig" data-go="0">Índice →<small>volver a la lista</small></a>')
+    +(prev?'<a data-go="'+prev.n+'">← '+num(prev.n)+'<small>'+prev.t+'</small></a>':'<a data-go="0">← Índice<small>volver a la lista</small></a>')
+    +(next?'<a class="sig" data-go="'+next.n+'">'+num(next.n)+' →<small>'+next.t+'</small></a>':'<a class="sig" data-go="0">Índice →<small>volver a la lista</small></a>')
     +'</div></section>';
 
   document.querySelectorAll("[data-go]").forEach(function(a){
@@ -213,16 +213,16 @@ function vistaCancion(n, keepScroll){
     b.addEventListener("click",function(){ picker=false; setTr(n, 0); });
   });
 
-  document.getElementById("panelLbl").innerHTML=String(s.n).padStart(2,"0")+' · <b>'+s.t+'</b>'
-    +(ctx.tr?' <span style="color:var(--turquesa)">· en '+trad(ctx.k.split(" ")[0], notac)+'</span>':'')
+  document.getElementById("panelLbl").innerHTML=num(s.n)+' · <b>'+s.t+'</b>'
+    +(ctx.tr?' <span style="color:var(--turquesa)">· en '+ctx.k.split(" ")[0]+'</span>':'')
     +(modo!=="b"&&zonaDe(s)&&!ctx.tr?' <span style="color:var(--turquesa)">· '+zonaDe(s)+'</span>':'');
   document.getElementById("strip").innerHTML=s.secs.length
     ? acordesDe(s, ctx).map(function(par){
-        const eq=(modo!=="b"&&par[1]&&par[1]!==par[0])?'<div class="eq">= '+trad(par[1], notac)+'</div>':'';
-        return '<div class="dg"><div class="nm">'+trad(par[0], notac)+'</div>'+eq+diagramaDe(par[0])+'</div>';
+        const eq=(modo!=="b"&&par[1]&&par[1]!==par[0])?'<div class="eq">= '+par[1]+'</div>':'';
+        return '<div class="dg"><div class="nm">'+par[0]+'</div>'+eq+diagramaDe(par[0])+'</div>';
       }).join("")
     : '<div style="color:var(--gris);font-size:13px">Sin acordes todavía.</div>';
-  document.getElementById("escPanel").innerHTML=escalaHTML(s.n, notac, ctx.tr);
+  document.getElementById("escPanel").innerHTML=escalaHTML(s.n, ctx.tr);
   if(!keepScroll) window.scrollTo(0,0);
 }
 
@@ -244,12 +244,6 @@ function setModo(m){
 document.getElementById("mBas").onclick=function(){ setModo("b"); };
 document.getElementById("mTri").onclick=function(){ setModo("t"); };
 document.getElementById("mAdv").onclick=function(){ setModo("a"); };
-document.getElementById("nEn").onclick=function(){ notac="en";
-  document.getElementById("nEn").classList.add("on");
-  document.getElementById("nEs").classList.remove("on"); repintar(); };
-document.getElementById("nEs").onclick=function(){ notac="es";
-  document.getElementById("nEs").classList.add("on");
-  document.getElementById("nEn").classList.remove("on"); repintar(); };
 document.getElementById("bLetra").onclick=function(){ verLetra=!verLetra;
   this.classList.toggle("on",verLetra);
   document.body.classList.toggle("sinletra",!verLetra); };
@@ -271,5 +265,23 @@ document.getElementById("wake").onclick=async function(e){
     else{ wl=await navigator.wakeLock.request("screen"); b.classList.add("on"); b.textContent="Encendida"; }
   }catch(err){ b.textContent="No disponible"; }
 };
+
+function hojaAbierta(){ return !document.getElementById("hoja").classList.contains("oculto"); }
+function cerrarHoja(){
+  if(!hojaAbierta()) return;
+  document.getElementById("hoja").classList.add("oculto");
+  document.getElementById("ayuda").classList.remove("on");
+  document.getElementById("ayuda").setAttribute("aria-expanded","false");
+}
+document.getElementById("ayuda").onclick=function(){
+  const abierta=hojaAbierta();
+  document.getElementById("hoja").classList.toggle("oculto",abierta);
+  this.classList.toggle("on",!abierta);
+  this.setAttribute("aria-expanded",String(!abierta));
+};
+document.getElementById("hojaCerrar").onclick=function(){ cerrarHoja(); };
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"&&hojaAbierta()) cerrarHoja();
+});
 
 vistaIndice(); medirBarra();
