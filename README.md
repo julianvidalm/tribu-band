@@ -44,9 +44,10 @@ sin build en tiempo de ejecución y sin dependencias externas.
 Requiere Node 18 o superior. No hay dependencias que instalar.
 
 ```sh
-npm run check   # valida los datos
-npm test        # corre los tests unitarios
-npm run build   # check + genera dist/setlist-la-tribu.html
+npm run check        # valida los datos
+npm test             # corre los tests unitarios
+npm run build        # check + genera dist/setlist-la-tribu.html (los 26 temas)
+npm run build:show   # check + genera el archivo del show (ver «Setlist de un show»)
 ```
 
 - `npm run check` (`scripts/check.js`) verifica que cada digitación dé las
@@ -93,6 +94,32 @@ scripts/check.js        validador de datos (npm run check)
 test/                   tests unitarios (npm test)
 dist/                   salida del build (no se versiona)
 ```
+
+## Setlist de un show
+
+`src/data/show.json` guarda el orden definitivo de un show, por número de tema:
+
+```json
+{ "name": "Festitook", "file": "setlist-festitook.html", "order": [11, 12, 1, 2] }
+```
+
+`npm run build:show` genera `dist/<file>` (si falta `file`, se deriva del
+nombre) con **solo esos temas, en ese orden**, numerados 01..N como en el
+escenario. El archivo lleva igual los 26 temas adentro: el número de tema
+original sigue siendo el identificador de escalas, transposiciones guardadas y
+navegación, así que la misma transposición vale en los dos archivos.
+
+El validador (sección 7) se niega a generar el archivo si el show lista un tema
+que no existe, que no tiene secciones o que sigue marcado `dud`.
+
+## Publicar en GitHub Pages
+
+`npm run deploy` (o `bash scripts/deploy-pages.sh`) regenera los dos archivos y
+los empuja a la rama `gh-pages` de `origin`, que GitHub Pages sirve en
+<https://julianvidalm.github.io/tribu-band/>: `index.html` es el show actual,
+`setlist-la-tribu.html` los 26 temas. Esa rama solo contiene la salida del
+build y se reescribe entera en cada deploy; el código fuente vive en `main`.
+Sirve como respaldo con internet cuando el archivo local no abre en el iPad.
 
 ## Transposiciones guardadas
 

@@ -10,6 +10,12 @@ import { splitBars } from "../src/lib/bars.js";
 import { libFor } from "../src/lib/diagram.js";
 import { checkShape, keyScale, outOfKey } from "../src/lib/theory.js";
 import { transposeKey, keySpelling, transposeSymbol, resolveShape } from "../src/lib/transpose.js";
+import { parseShow } from "../build/build.js";
+import { readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const SHOW_PATH = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "data", "show.json");
 
 const MODES = [
   { key: "b", label: "Basico", lib: SHAPES },
@@ -189,6 +195,25 @@ section("6. Every chord at all 12 transpositions (blocking)");
   }
   info(checked + " (song, n, chord) combinations checked, " + failed + " without a shape");
   info("resolved by exact library entry: " + stats.exact + " · basic fallback: " + stats.basic + " · shifted shape: " + stats.shifted);
+}
+
+/* 7. Show order */
+section("7. Show order in src/data/show.json (blocking)");
+if (!existsSync(SHOW_PATH)) {
+  info("no show.json: only the full setlist builds");
+} else {
+  let show = null;
+  try { show = parseShow(readFileSync(SHOW_PATH, "utf8")); } catch (e) { problem(e.message); }
+  if (show) {
+    const byN = new Map(SET.map((s) => [s.n, s]));
+    for (const n of show.order) {
+      const s = byN.get(n);
+      if (!s) { problem("show \"" + show.name + "\" lists song " + n + ", which is not in SET"); continue; }
+      if (!s.secs.length) problem("show \"" + show.name + "\" lists " + song(s) + ", which has no sections yet");
+      else if (s.v === "dud") problem("show \"" + show.name + "\" lists " + song(s) + ", still marked dud: " + (s.dud || ""));
+    }
+    info("show \"" + show.name + "\" -> dist/" + show.file + ": " + show.order.length + " songs: " + show.order.map((n) => byN.has(n) ? song(byN.get(n)) : "?" + n).join(" · "));
+  }
 }
 
 console.log("\ncheck: " + blocking + " blocking problem" + (blocking === 1 ? "" : "s"));

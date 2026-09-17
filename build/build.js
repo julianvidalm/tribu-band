@@ -17,6 +17,7 @@ const SRC = join(ROOT, "src");
 const FONTS_DIR = join(ROOT, "assets", "fonts");
 const OUT_DIR = join(ROOT, "dist");
 const OUT = join(OUT_DIR, "setlist-la-tribu.html");
+const SHOW_FILE = "data/show.json";
 
 // Webfonts are vendored (latin subsets from Google Fonts) and embedded as
 // base64 so the page renders identically with no network. Archivo and
@@ -46,7 +47,29 @@ const MODULES = [
 // JSON data files are inlined as a const with this name.
 const JSON_CONST = {
   "data/transposiciones.json": "TRANSPOSICIONES",
+  "data/show.json": "SHOW",
 };
+
+// `--show` builds a second file for one specific show: src/data/show.json is
+// inlined as SHOW and the UI lists only those songs, in that order. The full
+// SET still travels in the file, so song ids, scales and saved transpositions
+// keep working unchanged; the show only decides what the index displays.
+export function parseShow(text) {
+  let show;
+  try { show = JSON.parse(text); } catch (e) { throw new Error("invalid JSON in " + SHOW_FILE + ": " + e.message); }
+  if (!show || typeof show.name !== "string" || !show.name.trim()) throw new Error(SHOW_FILE + ' needs a non-empty "name"');
+  if (!Array.isArray(show.order) || !show.order.length || !show.order.every((n) => Number.isInteger(n) && n > 0)) {
+    throw new Error(SHOW_FILE + ' needs "order": a non-empty list of song numbers');
+  }
+  if (new Set(show.order).size !== show.order.length) throw new Error(SHOW_FILE + " repeats a song number");
+  const file = typeof show.file === "string" && show.file.trim() ? show.file.trim() : "setlist-" + slug(show.name) + ".html";
+  if (!/^[\w.-]+\.html$/.test(file)) throw new Error(SHOW_FILE + ': "file" must be a plain .html file name');
+  return { name: show.name.trim(), order: show.order.slice(), file };
+}
+
+export function slug(text) {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "show";
+}
 
 // Turn a JSON file into a script-level constant: `const NAME = {...};`
 export function wrapJson(name, text) {
@@ -111,8 +134,13 @@ export function duplicateTopLevelNames(bodies) {
   return dups;
 }
 
-export function main() {
-  const bodies = MODULES.map((rel) => [rel, rel.endsWith(".json") ? wrapJson(JSON_CONST[rel] || fail("no const name for " + rel), readSrc(rel)) : stripEsm(readSrc(rel))]);
+export function main(argv = process.argv.slice(2)) {
+  const withShow = argv.includes("--show");
+  const show = withShow ? parseShow(readSrc(SHOW_FILE)) : null;
+  // SHOW is a block-scoped const inside the IIFE, so it must be declared
+  // before ui/app.js reads it: splice it in right after the other JSON data.
+  const modules = withShow ? MODULES.flatMap((rel) => (rel === "data/transposiciones.json" ? [rel, SHOW_FILE] : [rel])) : MODULES;
+  const bodies = modules.map((rel) => [rel, rel.endsWith(".json") ? wrapJson(JSON_CONST[rel] || fail("no const name for " + rel), readSrc(rel)) : stripEsm(readSrc(rel))]);
   const dups = duplicateTopLevelNames(bodies);
   if (dups.length) fail("duplicate top-level names across modules: " + dups.join("; "));
   const js = bodies.map(([rel, body]) => "/* ---- src/" + rel + " ---- */\n" + body).join("\n\n");
@@ -127,9 +155,11 @@ export function main() {
   if (/\{\{[a-z]+\}\}/.test(html)) fail("unreplaced placeholder left in output");
   if (/^\s*(import|export)\s/m.test(wrapped)) fail("import/export survived stripping");
 
+  const out = show ? join(OUT_DIR, show.file) : OUT;
   mkdirSync(OUT_DIR, { recursive: true });
-  writeFileSync(OUT, html);
-  console.log("build: wrote dist/setlist-la-tribu.html (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB)");
+  writeFileSync(out, html);
+  console.log("build: wrote dist/" + (show ? show.file : "setlist-la-tribu.html") + " (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB)"
+    + (show ? ' · show "' + show.name + '", ' + show.order.length + " songs" : ""));
 }
 
 // Only build when executed directly, so tests can import stripEsm.
