@@ -1,7 +1,7 @@
 import { SET } from "../data/setlist.js";
 import { splitBars } from "../lib/bars.js";
 import { diagramaShape } from "../lib/diagram.js";
-import { escalaHTML } from "../lib/scale.js";
+import { escalaHTML, escalaNota } from "../lib/scale.js";
 import { letraHTML } from "../lib/lyrics.js";
 import { parseNote } from "../lib/theory.js";
 import {
@@ -10,7 +10,7 @@ import {
 } from "../lib/transpose.js";
 
 /* ============ ESTADO ============ */
-let modo="b", esc=1, vista="indice", actual=null, verLetra=true, picker=false;
+let modo="b", esc=1, vista="indice", actual=null, verLetra=true, picker=false, info=false;
 
 /* ============ SHOW ============ */
 // The build can inline src/data/show.json as SHOW: an ordered subset of SET
@@ -141,7 +141,7 @@ function pickerHTML(s, ctx){
 }
 
 function vistaCancion(n, keepScroll){
-  if(actual!==n) picker=false;
+  if(actual!==n){ picker=false; info=false; }
   vista="song"; actual=n;
   cerrarHoja();
   const s=SET.find(function(x){return x.n===n;});
@@ -174,6 +174,22 @@ function vistaCancion(n, keepScroll){
     ? '<span class="tag tono pick" id="tono">'+ctx.k.split(" ")[0]+(ctx.tr?' <small>'+(ctx.tr>0?"+":"")+ctx.tr+'</small>':'')+' ▾</span>'
     : "";
 
+  const nota=escalaNota(s.n, ctx.tr);
+  const infoPanel=info
+    ? '<section class="infoTema" id="infoTema" aria-label="Sobre este tema">'
+      +'<div class="cab"><h3>Sobre este tema</h3><button class="btn cerrar" id="infoCerrar">Cerrar</button></div>'
+      +'<div class="hs"><span class="h">Ficha</span><dl class="ficha">'
+      +'<dt>artista</dt><dd>'+s.a+'</dd>'
+      +(s.st!=="?"?'<dt>estilo</dt><dd>'+s.st+'</dd>':"")
+      +(s.bpm!=="?"?'<dt>tempo</dt><dd>'+s.bpm+' BPM</dd>':"")
+      +'<dt>estado</dt><dd>'+vtag+'</dd>'
+      +'</dl></div>'
+      +(s.dud?'<div class="hs aviso"><span class="h">Falta confirmar</span>'+s.dud+'</div>':"")
+      +(s.rol?'<div class="hs"><span class="h">Tu rol</span>'+s.rol+'</div>':"")
+      +(nota?'<div class="hs"><span class="h">Para improvisar</span>'+nota+'</div>':"")
+      +'</section>'
+    : "";
+
   document.getElementById("main").innerHTML='<section class="song">'
     +'<div class="cab"><span class="num">'+num(s.n)+'</span>'
     +'<h2>'+s.t+'<span class="art">'+s.a+'</span></h2></div>'
@@ -181,12 +197,11 @@ function vistaCancion(n, keepScroll){
     +tonoTag
     +(zonaDe(s)&&!ctx.tr?'<span class="tag zona">'+(modo==="t"?"tríadas · ":"avanzado · ")+zonaDe(s)+'</span>':"")
     +(s.bpm!=="?"?'<span class="tag">'+s.bpm+' BPM</span>':"")
-    +(s.st!=="?"?'<span class="tag">'+s.st+'</span>':"")
-    +vtag+'</div>'
+    +'<button class="btn info'+(info?' on':'')+'" id="info" aria-label="Sobre este tema" aria-expanded="'+info+'">?</button>'
+    +'</div>'
     +(pickable&&picker?pickerHTML(s, ctx):"")
+    +infoPanel
     +(s.forma?'<div class="forma"><span class="h">Forma del tema</span>'+s.forma.replace(/→/g,'<i>→</i>')+'</div>':"")
-    +(s.dud?'<div class="aviso"><b>Falta confirmar</b>'+s.dud+'</div>':"")
-    +(s.rol?'<div class="rol">'+s.rol+'</div>':"")
     +'<div class="secs">'+secs+'</div>'
     +'<div id="escSong">'+escalaHTML(s.n, ctx.tr)+'</div>'
     +'<div class="nav">'
@@ -202,6 +217,9 @@ function vistaCancion(n, keepScroll){
   });
   const tono=document.getElementById("tono");
   if(tono) tono.addEventListener("click",function(){ picker=!picker; vistaCancion(n, true); });
+  document.getElementById("info").addEventListener("click",function(){ info=!info; vistaCancion(n, true); });
+  const infoCerrar=document.getElementById("infoCerrar");
+  if(infoCerrar) infoCerrar.addEventListener("click",function(){ info=false; vistaCancion(n, true); });
   document.querySelectorAll(".picker [data-pc]").forEach(function(b){
     b.addEventListener("click",function(){
       const orig=parseNote(s.k.split(" ")[0].replace(/m$/,""));
@@ -281,7 +299,9 @@ document.getElementById("ayuda").onclick=function(){
 };
 document.getElementById("hojaCerrar").onclick=function(){ cerrarHoja(); };
 document.addEventListener("keydown",function(e){
-  if(e.key==="Escape"&&hojaAbierta()) cerrarHoja();
+  if(e.key!=="Escape") return;
+  if(vista==="song"&&info){ info=false; vistaCancion(actual, true); return; }
+  if(hojaAbierta()) cerrarHoja();
 });
 
 vistaIndice(); medirBarra();

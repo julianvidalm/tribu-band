@@ -21,9 +21,15 @@ sin build en tiempo de ejecución y sin dependencias externas.
    - **Pantalla**: Wake Lock para que no se apague la pantalla.
    - **?**: abre una hoja de ayuda con cómo leer los modos, los diagramas, la
      transposición y el estado de verificación de cada tema.
-4. En pantallas de 800 px o más, la vista se parte en dos columnas: contenido
+4. Dentro de un tema, el círculo rojo **?** al final de la fila de etiquetas
+   abre un panel con la ficha del tema (artista, estilo, tempo y estado de
+   verificación), la nota de "Tu rol", la nota de la escala para improvisar y
+   el aviso de "Falta confirmar" cuando corresponde. Es un panel por tema,
+   distinto del **?** de la barra superior, que es la ayuda general de toda
+   la app.
+5. En pantallas de 800 px o más, la vista se parte en dos columnas: contenido
    del tema a la izquierda y panel fijo de diagramas y escala a la derecha.
-5. **Transportar un tema**: dentro del tema, tocá la etiqueta turquesa del tono
+6. **Transportar un tema**: dentro del tema, tocá la etiqueta turquesa del tono
    y elegí en qué tono tocarlo. La grilla muestra los 12 tonos del mismo modo
    (menores para un tema en menor, mayores para uno en mayor); el original va
    con borde turquesa y el elegido en amarillo. El pie indica los semitonos y

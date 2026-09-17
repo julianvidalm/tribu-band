@@ -45,13 +45,31 @@ export function escalaSVG(R,tipo,raiz){
   return s+'</svg>';
 }
 
+// Shared lookup: the (possibly transposed) ESCALAS entry for song n, or null.
 // tr: semitones of transposition (0 = original)
+function escalaEntry(n, tr){
+  const e0=ESCALAS[n]; if(!e0) return null;
+  return tr?transposeScale(e0,tr):e0;
+}
+
+// Note HTML shown inside .escBlk .n — the same content escalaHTML embeds.
+function escalaNotaHTML(e){
+  return '<b style="color:var(--turquesa)">●</b> raíz · desde esta caja te movés por CAGED a las otras cuatro posiciones.<br><br>'+e.n;
+}
+
 export function escalaHTML(n, tr){
-  const e0=ESCALAS[n]; if(!e0) return "";
-  const e=tr?transposeScale(e0,tr):e0;
+  const e=escalaEntry(n,tr); if(!e) return "";
   const nombre=e.r+" "+(e.t==="menor"?"menor pentatónica":"mayor pentatónica");
   return '<div class="escBlk"><div class="h">Para improvisar</div>'
     +'<div class="t">'+nombre+' · traste '+(e.t==="menor"?e.R:e.R-1)+'</div>'
     +escalaSVG(e.R,e.t,e.r)
-    +'<div class="n"><b style="color:var(--turquesa)">●</b> raíz · desde esta caja te movés por CAGED a las otras cuatro posiciones.<br><br>'+e.n+'</div></div>';
+    +'<div class="n">'+escalaNotaHTML(e)+'</div></div>';
+}
+
+// Just the note HTML for song n (see escalaHTML), or "" when there is no
+// scale entry or no note.
+export function escalaNota(n, tr){
+  const e=escalaEntry(n,tr);
+  if(!e||!e.n) return "";
+  return escalaNotaHTML(e);
 }
