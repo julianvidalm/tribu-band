@@ -136,6 +136,10 @@ No están pensados para el atril — para eso está `npm run build:show` — sin
 para incrustar un tema suelto en otras herramientas, como una página de
 Notion.
 
+Para un tema que no está en el show, `node build/build.js --song <n>` (con `n`
+el número del tema en `setlist.js`) genera `dist/songs/<slug>.html` con la
+numeración del repertorio completo, también sin tipografías incrustadas.
+
 ## Publicar en GitHub Pages
 
 `npm run deploy` (o `bash scripts/deploy-pages.sh`) regenera los dos archivos y

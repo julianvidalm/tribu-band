@@ -196,6 +196,22 @@ export function main(argv = process.argv.slice(2)) {
   const show = (withShow || withSongs) ? parseShow(readSrc(SHOW_FILE)) : null;
   mkdirSync(OUT_DIR, { recursive: true });
 
+  // `--song <n>` builds one font-less file for a single song by its number
+  // (s.n), independent of any show: dist/songs/<slug>.html. This is how a
+  // song outside the current show gets its own page for embedding elsewhere.
+  const songFlag = argv.indexOf("--song");
+  if (songFlag >= 0) {
+    const n = parseInt(argv[songFlag + 1], 10);
+    const song = SET.find((s) => s.n === n);
+    if (!song) fail("--song needs a song number that exists in the setlist (got " + argv[songFlag + 1] + ")");
+    mkdirSync(SONGS_DIR, { recursive: true });
+    const html = buildHtml({ start: n, fonts: false });
+    const name = slug(song.t) + ".html";
+    writeFileSync(join(SONGS_DIR, name), html);
+    console.log("build: wrote dist/songs/" + name + " (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB) · song " + n + " " + song.t);
+    return;
+  }
+
   if (withSongs) {
     mkdirSync(SONGS_DIR, { recursive: true });
     let totalKb = 0;
