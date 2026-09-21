@@ -55,6 +55,7 @@ npm run check        # valida los datos
 npm test             # corre los tests unitarios
 npm run build        # check + genera dist/setlist-la-tribu.html (los 26 temas)
 npm run build:show   # check + genera el archivo del show (ver «Setlist de un show»)
+npm run build:songs  # check + genera un HTML por tema (ver «Un archivo por tema»)
 ```
 
 - `npm run check` (`scripts/check.js`) verifica que cada digitación dé las
@@ -100,6 +101,7 @@ build/build.js          genera dist/setlist-la-tribu.html
 scripts/check.js        validador de datos (npm run check)
 test/                   tests unitarios (npm test)
 dist/                   salida del build (no se versiona)
+  songs/                un HTML por tema (npm run build:songs)
 ```
 
 ## Setlist de un show
@@ -118,6 +120,21 @@ navegación, así que la misma transposición vale en los dos archivos.
 
 El validador (sección 7) se niega a generar el archivo si el show lista un tema
 que no existe, que no tiene secciones o que sigue marcado `dud`.
+
+## Un archivo por tema
+
+`npm run build:songs` genera un HTML por tema del show actual (el orden de
+`src/data/show.json`) en `dist/songs/`, nombrados `NN-slug.html` según la
+posición en el show y el título del tema, por ejemplo `02-loca.html`. Cada
+archivo es como el del show — misma numeración, mismo prev/next — pero abre
+directo en ese tema en vez de en el índice.
+
+Estos archivos no llevan las tipografías incrustadas: usan las fuentes del
+sistema, así que pesan bastante menos (~100 KB en vez de ~1 MB) a costa de no
+verse con Archivo/Archivo Black/JetBrains Mono si el dispositivo no las tiene.
+No están pensados para el atril — para eso está `npm run build:show` — sino
+para incrustar un tema suelto en otras herramientas, como una página de
+Notion.
 
 ## Publicar en GitHub Pages
 

@@ -10,6 +10,7 @@
     "test": "node --test \"test/**/*.test.js\"",
     "build": "node scripts/check.js && node build/build.js",
     "build:show": "node scripts/check.js && node build/build.js --show",
+    "build:songs": "node scripts/check.js && node build/build.js --songs",
     "deploy": "bash scripts/deploy-pages.sh"
   }
 }

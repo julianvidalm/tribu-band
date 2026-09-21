@@ -11,12 +11,14 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { SET } from "../src/data/setlist.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = join(ROOT, "src");
 const FONTS_DIR = join(ROOT, "assets", "fonts");
 const OUT_DIR = join(ROOT, "dist");
 const OUT = join(OUT_DIR, "setlist-la-tribu.html");
+const SONGS_DIR = join(OUT_DIR, "songs");
 const SHOW_FILE = "data/show.json";
 
 // Webfonts are vendored (latin subsets from Google Fonts) and embedded as
@@ -70,6 +72,12 @@ export function slug(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "show";
 }
 
+// `--songs` builds one file per song: NN is the song's 1-based position in the
+// show (dist/songs/NN-slug.html), so the sequence matches the printed setlist.
+export function songFileName(pos, title) {
+  return String(pos).padStart(2, "0") + "-" + slug(title) + ".html";
+}
+
 // Turn a JSON file into a script-level constant: `const NAME = {...};`
 export function wrapJson(name, text) {
   let value;
@@ -120,6 +128,24 @@ export function fontFaceCss() {
   }).join("\n");
 }
 
+// System fallbacks for the three webfonts, keyed by the exact family name used
+// in styles.css.
+const FONT_FALLBACKS = {
+  "Archivo": '"Archivo",system-ui,sans-serif',
+  "Archivo Black": '"Archivo Black",Impact,sans-serif',
+  "JetBrains Mono": '"JetBrains Mono",ui-monospace,monospace',
+};
+
+// `--songs` files skip the embedded @font-face blocks (no network, but no
+// vendored fonts either) so every bare `font-family:"<name>"` declaration
+// needs a system fallback appended. Only touches a declaration that ends
+// right after the closing quote (no fallback already there): a lookahead on
+// `;` or `}` keeps the original terminator and leaves declarations that
+// already carry a fallback list untouched.
+export function fontFallbackCss(css) {
+  return css.replace(/font-family:"(Archivo Black|Archivo|JetBrains Mono)"(?=[;}])/g, (_, name) => "font-family:" + FONT_FALLBACKS[name]);
+}
+
 // Every module shares one scope after concatenation, so two modules declaring
 // the same top-level name would be a silent bug or a SyntaxError in the browser.
 export function duplicateTopLevelNames(bodies) {
@@ -133,19 +159,27 @@ export function duplicateTopLevelNames(bodies) {
   return dups;
 }
 
-export function main(argv = process.argv.slice(2)) {
-  const withShow = argv.includes("--show");
-  const show = withShow ? parseShow(readSrc(SHOW_FILE)) : null;
+// Assemble one HTML document as a string. `show` inlines SHOW.json and scopes
+// the index/navigation to that show's order. `start` (a song number, matching
+// s.n) inlines a `const START = <n>;` right after the other JSON constants,
+// so the app boots straight into that song instead of the index. `fonts`
+// picks embedded @font-face (true, the default) or system fallbacks (false,
+// used by --songs so single-song files stay small).
+export function buildHtml({ show = null, start = null, fonts = true } = {}) {
   // SHOW is a block-scoped const inside the IIFE, so it must be declared
   // before ui/app.js reads it: splice it in right after the other JSON data.
-  const modules = withShow ? MODULES.flatMap((rel) => (rel === "data/transposiciones.json" ? [rel, SHOW_FILE] : [rel])) : MODULES;
+  const modules = show ? MODULES.flatMap((rel) => (rel === "data/transposiciones.json" ? [rel, SHOW_FILE] : [rel])) : MODULES;
   const bodies = modules.map((rel) => [rel, rel.endsWith(".json") ? wrapJson(JSON_CONST[rel] || fail("no const name for " + rel), readSrc(rel)) : stripEsm(readSrc(rel))]);
+  if (start != null) {
+    const idx = bodies.findIndex(([rel]) => rel === SHOW_FILE || rel === "data/transposiciones.json");
+    bodies.splice(idx + 1, 0, ["START", wrapJson("START", String(start))]);
+  }
   const dups = duplicateTopLevelNames(bodies);
   if (dups.length) fail("duplicate top-level names across modules: " + dups.join("; "));
   const js = bodies.map(([rel, body]) => "/* ---- src/" + rel + " ---- */\n" + body).join("\n\n");
   const wrapped = '(function(){\n"use strict";\n' + js + "\n})();\n";
 
-  const css = fontFaceCss() + "\n" + readSrc("styles.css");
+  const css = fonts ? fontFaceCss() + "\n" + readSrc("styles.css") : fontFallbackCss(readSrc("styles.css"));
   const template = readSrc("template.html");
   if (!template.includes("{{css}}") || !template.includes("{{js}}")) fail("template.html must contain {{css}} and {{js}}");
 
@@ -153,9 +187,35 @@ export function main(argv = process.argv.slice(2)) {
   const html = template.split("{{css}}").join(css).split("{{js}}").join(wrapped);
   if (/\{\{[a-z]+\}\}/.test(html)) fail("unreplaced placeholder left in output");
   if (/^\s*(import|export)\s/m.test(wrapped)) fail("import/export survived stripping");
+  return html;
+}
 
-  const out = show ? join(OUT_DIR, show.file) : OUT;
+export function main(argv = process.argv.slice(2)) {
+  const withShow = argv.includes("--show");
+  const withSongs = argv.includes("--songs");
+  const show = (withShow || withSongs) ? parseShow(readSrc(SHOW_FILE)) : null;
   mkdirSync(OUT_DIR, { recursive: true });
+
+  if (withSongs) {
+    mkdirSync(SONGS_DIR, { recursive: true });
+    let totalKb = 0;
+    show.order.forEach((n, i) => {
+      const pos = i + 1;
+      const song = SET.find((s) => s.n === n);
+      if (!song) fail(SHOW_FILE + " lists song " + n + ", not found in the setlist");
+      const html = buildHtml({ show, start: n, fonts: false });
+      const name = songFileName(pos, song.t);
+      writeFileSync(join(SONGS_DIR, name), html);
+      const kb = Buffer.byteLength(html) / 1024;
+      totalKb += kb;
+      console.log("build: wrote dist/songs/" + name + " (" + kb.toFixed(1) + " KB)");
+    });
+    console.log("build: wrote " + show.order.length + " song files to dist/songs/ (" + totalKb.toFixed(1) + " KB total)");
+    return;
+  }
+
+  const html = buildHtml({ show, fonts: true });
+  const out = show ? join(OUT_DIR, show.file) : OUT;
   writeFileSync(out, html);
   console.log("build: wrote dist/" + (show ? show.file : "setlist-la-tribu.html") + " (" + (Buffer.byteLength(html) / 1024).toFixed(1) + " KB)"
     + (show ? ' · show "' + show.name + '", ' + show.order.length + " songs" : ""));

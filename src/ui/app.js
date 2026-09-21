@@ -304,4 +304,8 @@ document.addEventListener("keydown",function(e){
   if(hojaAbierta()) cerrarHoja();
 });
 
-vistaIndice(); medirBarra();
+// `--songs` files inline a START song number so the app opens straight on
+// that song (e.g. for embedding in Notion) instead of the index.
+if(typeof START!=="undefined"&&SET.find(function(s){return s.n===START;})&&LISTA.some(function(s){return s.n===START;})) vistaCancion(START);
+else vistaIndice();
+medirBarra();
