@@ -21,7 +21,7 @@ The GitHub Pages build is for the band and live playing. The user wants a person
 - [x] T2 Notion database "Canciones" created under Project Music with the agreed schema. Evidence: database https://app.notion.com/p/44e74c36a5c84386af4fcf2c355c2502, data source collection://4969a848-a242-4bb9-a6b0-074d3137f258 (created 2026-09-21).
 - [x] T3 Row data extracted from the repo for the 14 show songs (title, artist, key, scale name, style, bpm, status). Evidence: node script over src/data/{setlist,scales,show}.js → 14 rows; Estilo mapped to the select options (Cóndor→Andino, Selva→Chicha, Gimme/Yo Tomo→Rock, Chichera→Huayno, Moliendo→Joropo, Guaneña→Bambuco, rest by genre).
 - [x] T4 14 HTML files uploaded and 14 pages created with `<embed>` + Pages link. Evidence: 14 uploads HTTP 200 status "uploaded" via create-file-upload + curl; create-pages returned 14 page ids under collection 4969a848-a242-4bb9-a6b0-074d3137f258 (2026-09-21).
-- [ ] T5 Verification: builds/tests green (done); page "Loca" fetched back shows the callout, the `<embed>` bound to attachment 02-loca.html and the Pages link (done); pending: user confirms the embed renders in the Notion app (desktop/iPad).
+- [x] T5 Verification: builds/tests green; page "Loca" fetched back shows the callout, the `<embed>` bound to attachment 02-loca.html and the Pages link; user confirmed on 2026-09-21 that everything renders correctly in Notion. Branch fast-forwarded into main and pushed (5142d48).
 
 ## Acceptance criteria
 - `npm run build:songs` writes 14 files, each < 200 KiB, each with `const START = <n>` and no `@font-face`.
@@ -31,4 +31,4 @@ The GitHub Pages build is for the band and live playing. The user wants a person
 - Branch: feat/notion-song-pages (from main at 3fdfc24).
 
 ## Next step
-User opens https://app.notion.com/p/44e74c36a5c84386af4fcf2c355c2502 and confirms the embedded HTML renders. Then decide merge of feat/notion-song-pages into main (build:songs is only needed to regenerate files for Notion; Pages deploy is unaffected).
+Feature closed. New songs are added on request with `node build/build.js --song <n>` plus the Notion upload/create flow (see the project memory «notion-song-pages-procedure»).
